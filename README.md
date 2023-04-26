@@ -1,2 +1,2 @@
 # ApartmentBillingPortal
-電気代集金時に使えるポータルサイト
+電気代集金等に使えるポータルサイト
