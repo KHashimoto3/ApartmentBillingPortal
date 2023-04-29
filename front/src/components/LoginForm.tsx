@@ -18,10 +18,10 @@ export const LoginForm = () => {
 
     return (
         <Container maxWidth="sm">
+            <form onSubmit={onSubmit}>
             <Stack spacing={2}>
                 <br></br>
                 <h1>ログイン</h1>
-                <form onSubmit={onSubmit}>
                 <TextField {...register("userId")} id="standard-basic" label="ユーザ名" variant="standard" /><br />
                 <TextField 
                     {...register("password")}
@@ -32,8 +32,8 @@ export const LoginForm = () => {
                     variant="standard"
                 /><br />
                 <Button type='submit'>ログイン</Button>
-                </form>
             </Stack>
+            </form>
             </Container>
     );
 }
