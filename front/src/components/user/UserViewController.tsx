@@ -9,12 +9,15 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
+import { UserViewContents } from './UserViewContents';
+
 export const UserViewController = () => {
     const [navigationValue, setNavigationValue] = useState<Number>(0);
 
     return (
         <div>
             <Container maxWidth="lg">
+                <UserViewContents />
                 <BottomNavigation
                     showLabels
                     value={navigationValue}
