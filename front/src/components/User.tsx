@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 import { LoginForm } from './LoginForm';
-import { UserHome } from './user/UserHome';
+import { UserViewController } from './user/UserViewController';
 
 export const User = () => {
     const [loginStatus, setLoginStatus] = useState<Boolean>(true);
@@ -31,7 +31,7 @@ export const User = () => {
                 </Toolbar>
             </AppBar>
             { /*ログイン状態に応じて表示を切り替える*/ }
-            {loginStatus? <UserHome /> : <LoginForm />}
+            {loginStatus? <UserViewController /> : <LoginForm />}
         </div>
     );
 }
