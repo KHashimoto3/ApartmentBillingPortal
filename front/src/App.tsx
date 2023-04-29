@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import {UserHome} from './components/UserHome';
-import {ManageHome} from './components/ManageHome';
+import {User} from './components/User';
+import {Manage} from './components/Manage';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<UserHome />} />
-        <Route path="/manage" element={<ManageHome />} />
+        <Route path="/" element={<User />} />
+        <Route path="/manage" element={<Manage />} />
       </Routes>
     </div>
   );

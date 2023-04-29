@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -5,8 +7,10 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 import { LoginForm } from './LoginForm';
+import { UserHome } from './user/UserHome';
 
-export const UserHome = () => {
+export const User = () => {
+    const [loginStatus, setLoginStatus] = useState<Boolean>(true);
 
     return (
         <div>
@@ -26,9 +30,8 @@ export const UserHome = () => {
                     <Button color="inherit">ゲスト</Button>
                 </Toolbar>
             </AppBar>
-            <div className='LoginFormArea'>
-                <LoginForm />
-            </div>
+            { /*ログイン状態に応じて表示を切り替える*/ }
+            {loginStatus? <UserHome /> : <LoginForm />}
         </div>
     );
 }
