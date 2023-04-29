@@ -5,9 +5,9 @@ import Container from '@mui/material/Container';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import HomeIcon from '@mui/icons-material/Home';
+import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 import { UserViewContents } from './UserViewContents';
 
@@ -25,9 +25,9 @@ export const UserViewController = () => {
                         setNavigationValue(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction label="ホーム" icon={<HomeIcon />} />
+                    <BottomNavigationAction label="今月の請求" icon={<CurrencyYenIcon />} />
+                    <BottomNavigationAction label="請求履歴" icon={<FormatListBulletedIcon />} />
                 </BottomNavigation>
             </Container>
         </div>
