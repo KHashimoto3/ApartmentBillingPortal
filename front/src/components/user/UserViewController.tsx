@@ -12,12 +12,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { UserViewContents } from './UserViewContents';
 
 export const UserViewController = () => {
-    const [navigationValue, setNavigationValue] = useState<Number>(0);
+    const [navigationValue, setNavigationValue] = useState<number>(0);
 
     return (
         <div>
             <Container maxWidth="lg">
-                <UserViewContents />
+                <UserViewContents contentsNo={navigationValue} />
                 <BottomNavigation
                     showLabels
                     value={navigationValue}
