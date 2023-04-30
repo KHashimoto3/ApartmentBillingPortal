@@ -31,7 +31,10 @@ export const User = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         電気代集金システム（支払い者用）
                     </Typography>
-                    <Button color="inherit">ゲスト</Button>
+                    { /*ログイン状態に応じてボタンを切り替える*/ }
+                    {loginFlag? (
+                        <Button color="inherit" onClick={() => setLoginFlag(false)}>ログアウト</Button>
+                    ) : <Button color="inherit">ログイン</Button>  }
                 </Toolbar>
             </AppBar>
             { /*ログイン状態に応じて表示を切り替える*/ }
