@@ -1,6 +1,8 @@
+import "./Billing.scss";
+
 export const NextBilling = () => {
     return (
-        <div>
+        <div className="homeContentsArea">
             <h1>NextBilling</h1>
         </div>
     )
