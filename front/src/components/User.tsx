@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,8 +9,10 @@ import Button from '@mui/material/Button';
 import { LoginForm } from './LoginForm';
 import { UserViewController } from './user/UserViewController';
 
+import { LoginFlagContext } from './providers/LoginFlagProvider';
+
 export const User = () => {
-    const [loginStatus, setLoginStatus] = useState<Boolean>(true);
+    const {loginFlag, setLoginFlag} = useContext(LoginFlagContext);
 
     return (
         <div>
@@ -31,7 +33,7 @@ export const User = () => {
                 </Toolbar>
             </AppBar>
             { /*ログイン状態に応じて表示を切り替える*/ }
-            {loginStatus? <UserViewController /> : <LoginForm />}
+            {loginFlag? <UserViewController /> : <LoginForm />}
         </div>
     );
 }
