@@ -16,7 +16,7 @@ export const UserViewController = () => {
 
     return (
         <div>
-            <Container maxWidth="lg" style={{height:"70vh"}}>
+            <Container maxWidth="md" style={{height:"70vh"}}>
                 <UserViewContents contentsNo={navigationValue} />
                 <BottomNavigation
                     showLabels
