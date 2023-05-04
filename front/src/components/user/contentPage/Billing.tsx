@@ -9,6 +9,8 @@ import FormControl from '@mui/material/FormControl';
 
 import "./Billing.scss";
 
+import { PaymentOption } from './PaymentOption';
+
 interface BillingData {
     sum: number,
     amount: number,
@@ -55,6 +57,7 @@ export const NextBilling = () => {
                     <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
                     <FormControlLabel value="all" control={<Radio />} label="全額繰越" />
                 </RadioGroup>
+                <PaymentOption />
             </FormControl>
         </div>
     )
