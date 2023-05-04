@@ -4,10 +4,14 @@ div.homeContentsArea {
 
 div.billingCardArea {
     width: 80%;
-    height: 80%;
+    height: 200px;
     margin: auto;
 
     h1,h2 {
         text-align: center;
+    }
+
+    p {
+        text-align: right;
     }
 }
