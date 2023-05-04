@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react';
+
 import Paper from '@mui/material/Paper';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
 import "./Billing.scss";
-import { useEffect, useState } from 'react';
 
 interface BillingData {
     sum: number,
@@ -32,6 +38,19 @@ export const NextBilling = () => {
                     <p>繰越請求額：     {billingData.carryOverPrice}円</p>
                 </div>
             } />
+            <h2>繰越設定</h2>
+            <FormControl>
+                <RadioGroup
+                    row
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="no"
+                    name="radio-buttons-group"
+                >
+                    <FormControlLabel value="no" control={<Radio />} label="設定なし" />
+                    <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
+                    <FormControlLabel value="all" control={<Radio />} label="全額繰越" />
+                </RadioGroup>
+            </FormControl>
         </div>
     )
 }
