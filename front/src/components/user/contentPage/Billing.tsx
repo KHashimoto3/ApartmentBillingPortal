@@ -57,7 +57,7 @@ export const NextBilling = () => {
                     <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
                     <FormControlLabel value="all" control={<Radio />} label="全額繰越" />
                 </RadioGroup>
-                <PaymentOption />
+                <PaymentOption billingData={billingData} carryOverType={value} />
             </FormControl>
         </div>
     )
