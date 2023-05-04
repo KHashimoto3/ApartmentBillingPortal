@@ -4,9 +4,6 @@ import "./Billing.scss";
 
 export const NextBilling = () => {
 
-    const paperStyle = {
-        height: '100px',
-    };
 
     return (
         <div className="homeContentsArea">
