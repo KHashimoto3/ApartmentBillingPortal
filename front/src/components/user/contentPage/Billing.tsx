@@ -18,6 +18,10 @@ interface BillingData {
 
 export const NextBilling = () => {
     const [billingData, setBillingData] = useState<BillingData>({sum: 0, amount: 0, thisMonthPrice: 0, carryOverPrice: 0});
+    const [value, setValue] = useState<string>('no');
+
+
+
     //請求額を設定する
     useEffect(() => {
         const billingDataSrc: BillingData = {
@@ -43,8 +47,9 @@ export const NextBilling = () => {
                 <RadioGroup
                     row
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="no"
+                    value={value}
                     name="radio-buttons-group"
+                    onChange={(e:  React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                 >
                     <FormControlLabel value="no" control={<Radio />} label="設定なし" />
                     <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
