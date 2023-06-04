@@ -1,3 +1,20 @@
 div.homeContentsArea {
     height: 100%;
 }
+
+div.billingCardArea {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+
+    h1,h2 {
+        text-align: center;
+    }
+
+    p {
+        text-align: right;
+        margin-right: 30px;
+        font-size: 14pt;
+        line-height: 15px;
+    }
+}
