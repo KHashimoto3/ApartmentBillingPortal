@@ -15,8 +15,6 @@ export const PaymentOption = (props: Props) => {
     return (
         <div>
             <h1>繰越設定</h1>
-            <p>{billingData.amount}</p>
-            <p>{props.carryOverType}</p>
         </div>
     );
 }
