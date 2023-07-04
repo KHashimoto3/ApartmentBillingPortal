@@ -1,8 +1,14 @@
 interface BillingData {
-    sum: number,
-    amount: number,
-    thisMonthPrice: number,
-    carryOverPrice: number
+    billingId: string;
+    userId: string;
+    useAmount: number;
+    price: number;
+    beforeCarryOver: number;
+    carryOverType: string;
+    carryOverPrice: number;
+    finalPrice: number;
+    dateId: number;
+    paid: boolean;
 };
 
 type Props = {
