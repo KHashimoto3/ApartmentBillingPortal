@@ -52,6 +52,19 @@ export const PaymentOption = (props: Props) => {
         }
     }, [carryOverPrice]);
 
+    //変更を保存ボタンが押された
+    const saveCarryOver = (type: string) => {
+        if (type === "no") {
+            alert("繰越は行わないことを設定しました。");
+        } else if (type === "part") {
+            alert(carryOverPrice + "円繰越して、" + paymentPrice + "円、支払うことを設定しました。");
+        } else if (type === "all") {
+            alert("全額繰越を設定しました。");
+        } else {
+            alert("対応していない支払いオプションを設定しようとしました！！");
+        }
+    };
+
     if (carryOverType === "no") {
         return (
             <div>
@@ -60,6 +73,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    onClick={() => saveCarryOver("no")}
                     disabled={saveDisabled}
                 >
                     変更を保存
@@ -78,6 +92,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    onClick={() => saveCarryOver("part")}
                     disabled={saveDisabled}
                 >
                     変更を保存
@@ -93,6 +108,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    onClick={() => saveCarryOver("all")}
                     disabled={saveDisabled}
                 >
                     変更を保存
