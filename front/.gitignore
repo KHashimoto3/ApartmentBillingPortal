@@ -2,6 +2,7 @@
 
 # firebase
 firebase.js
+front/.firebase
 
 # dependencies
 /node_modules
