@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 interface BillingData {
     billingId: string;
@@ -26,36 +26,42 @@ export const PaymentOption = (props: Props) => {
         return (
             <div>
                 <p>繰越設定は行わず、全額を支払います。</p>
+                <Stack spacing={2}>
                 <Button
                     size="small"
                     variant="contained"
                 >
                     変更を保存
                 </Button>
+                </Stack>
             </div>
         )
     } else if (carryOverType == "part") {
         return (
             <div>
                 <p>一部を繰越し、今月の支払額を設定します。</p>
+                <Stack spacing={2}>
                 <Button
                     size="small"
                     variant="contained"
                 >
                     変更を保存
                 </Button>
+                </Stack>
             </div>
         )
     } else if (carryOverType == "all") {
         return (
             <div>
                 <p>全額を繰越し、今月は支払いを行いません。</p>
+                <Stack spacing={2}>
                 <Button
                     size="small"
                     variant="contained"
                 >
                     変更を保存
                 </Button>
+                </Stack>
             </div>
         )
     } else {
