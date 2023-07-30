@@ -28,9 +28,29 @@ export const PaymentOption = (props: Props) => {
     //今月繰り越す金額
     const [carryOverPrice, setCarryOverPrice] = useState<number>(billingData.carryOverPrice);
 
+    const [saveDisabled, setSaveDisabled] = useState<boolean>(false);
+
     useEffect(() => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
     }, [paymentPrice]);
+
+    //既に設定されているオプションの場合、「変更を保存」ボタンは無効にする
+    useEffect(() => {
+        if (billingData.carryOverType === carryOverType) {
+            setSaveDisabled(true);
+        } else {
+            setSaveDisabled(false);
+        }
+    }, [carryOverType]);
+
+    //既に設定されている繰越額と同じ金額の場合、「変更を保存」ボタンは無効にする
+    useEffect(() => {
+        if (billingData.carryOverPrice === carryOverPrice) {
+            setSaveDisabled(true);
+        } else {
+            setSaveDisabled(false);
+        }
+    }, [carryOverPrice]);
 
     if (carryOverType === "no") {
         return (
@@ -40,6 +60,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    disabled={saveDisabled}
                 >
                     変更を保存
                 </Button>
@@ -57,6 +78,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    disabled={saveDisabled}
                 >
                     変更を保存
                 </Button>
@@ -71,6 +93,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
+                    disabled={saveDisabled}
                 >
                     変更を保存
                 </Button>
