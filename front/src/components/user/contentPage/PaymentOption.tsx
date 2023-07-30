@@ -1,4 +1,5 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
 
 interface BillingData {
     billingId: string;
@@ -22,7 +23,16 @@ export const PaymentOption = (props: Props) => {
     const billingData: BillingData = props.billingData;
     const carryOverType: string = props.carryOverType;
 
-    if (carryOverType == "no") {
+    //一部繰越で、今月支払う金額
+    const [paymentPrice, setPaymentPrice] = useState<number>((billingData.price + billingData.beforeCarryOver) - billingData.carryOverPrice);
+    //今月繰り越す金額
+    const [carryOverPrice, setCarryOverPrice] = useState<number>(billingData.carryOverPrice);
+
+    useEffect(() => {
+        setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
+    }, [paymentPrice]);
+
+    if (carryOverType === "no") {
         return (
             <div>
                 <p>繰越設定は行わず、全額を支払います。</p>
@@ -36,11 +46,14 @@ export const PaymentOption = (props: Props) => {
                 </Stack>
             </div>
         )
-    } else if (carryOverType == "part") {
+    } else if (carryOverType === "part") {
         return (
             <div>
                 <p>一部を繰越し、今月の支払額を設定します。</p>
                 <Stack spacing={2}>
+                <p style={{margin: 0}}>今月支払う金額を入力</p>
+                <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
+                <p style={{margin: 0}}>繰越金額：{carryOverPrice}円</p>
                 <Button
                     size="small"
                     variant="contained"
@@ -50,7 +63,7 @@ export const PaymentOption = (props: Props) => {
                 </Stack>
             </div>
         )
-    } else if (carryOverType == "all") {
+    } else if (carryOverType === "all") {
         return (
             <div>
                 <p>全額を繰越し、今月は支払いを行いません。</p>

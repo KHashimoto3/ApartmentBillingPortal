@@ -46,7 +46,7 @@ export const NextBilling = () => {
                     <p>使用量   ：     {billingData.useAmount}</p>
                     <p>先月までの繰越額：{billingData.beforeCarryOver}円</p>
                     <p>今月請求額：     {billingData.price}円</p>
-                    <p>繰越請求額：     {billingData.carryOverPrice}円</p>
+                    <p>今月繰越額：     {billingData.carryOverPrice}円</p>
                 </div>
             } />
             <h2>繰越設定</h2>
