@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	functions.HTTP("helloFunction", helloFunction)
+	functions.HTTP("HelloFunction", helloFunction)
 }
 
 func helloFunction(w http.ResponseWriter, r *http.Request) {
