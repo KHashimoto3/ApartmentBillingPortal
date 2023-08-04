@@ -9,8 +9,18 @@ import (
 
 func init() {
 	functions.HTTP("HelloFunction", helloFunction)
+	functions.HTTP("HelloGetFunction", helloGetFunction)
 }
 
 func helloFunction(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "こんにちは")
+}
+
+func helloGetFunction(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	response := fmt.Sprintf("こんにちは。あなたはGETメソッドでリクエストしています。")
+	fmt.Fprint(w, response)
 }
