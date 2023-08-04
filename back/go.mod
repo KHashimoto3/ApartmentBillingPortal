@@ -1,4 +1,4 @@
-module billing/back
+module billing.com/back
 
 go 1.20
 
