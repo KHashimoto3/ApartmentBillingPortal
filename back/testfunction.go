@@ -1,6 +1,7 @@
 package back
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -11,5 +12,5 @@ func init() {
 }
 
 func helloFunction(w http.ResponseWriter, r *http.Request) {
-	Fprintln(w, "こんにちは")
+	fmt.Fprint(w, "こんにちは")
 }
