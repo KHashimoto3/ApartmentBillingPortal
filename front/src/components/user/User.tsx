@@ -7,9 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 import { LoginForm } from './LoginForm';
-import { UserViewController } from './user/UserViewController';
+import { UserViewController } from './UserViewController';
 
-import { LoginFlagContext } from './providers/LoginFlagProvider';
+import { LoginFlagContext } from '../providers/LoginFlagProvider';
 
 import './User.scss';
 

@@ -1,6 +1,6 @@
-import { Home } from "./contentPage/Home";
-import { NextBilling } from "./contentPage/Billing";
-import { History } from "./contentPage/History";
+import { Home } from "./home/Home";
+import { NextBilling } from "./billing/Billing";
+import { History } from "./history/History";
 
 type Props = {
     contentsNo: number

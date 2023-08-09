@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LoginFlagContext } from './providers/LoginFlagProvider';
+import { LoginFlagContext } from '../providers/LoginFlagProvider';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
