@@ -1,5 +1,7 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 interface BillingData {
     billingId: string;
@@ -68,7 +70,7 @@ export const PaymentOption = (props: Props) => {
     if (carryOverType === "no") {
         return (
             <div>
-                <p>繰越設定は行わず、全額を支払います。</p>
+                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>繰越設定は行わず、全額を支払います。</Typography>
                 <Stack spacing={2}>
                 <Button
                     size="small"
@@ -76,7 +78,7 @@ export const PaymentOption = (props: Props) => {
                     onClick={() => saveCarryOver("no")}
                     disabled={saveDisabled}
                 >
-                    変更を保存
+                    設定を保存
                 </Button>
                 </Stack>
             </div>
@@ -84,26 +86,28 @@ export const PaymentOption = (props: Props) => {
     } else if (carryOverType === "part") {
         return (
             <div>
-                <p>一部を繰越し、今月の支払額を設定します。</p>
-                <Stack spacing={2}>
-                <p style={{margin: 0}}>今月支払う金額を入力</p>
-                <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
-                <p style={{margin: 0}}>繰越金額：{carryOverPrice}円</p>
-                <Button
-                    size="small"
-                    variant="contained"
-                    onClick={() => saveCarryOver("part")}
-                    disabled={saveDisabled}
-                >
-                    変更を保存
-                </Button>
+                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>一部を繰越し、今月の支払額を設定します。</Typography>
+                <Stack spacing={1} sx={{marginTop: "20px"}}>
+                    <Typography variant="h6">今月支払う金額を入力</Typography>
+                    <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
+                    <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
+                    <Typography variant="h6">繰越金額</Typography>
+                    <Typography variant="h3">￥{carryOverPrice}</Typography>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => saveCarryOver("part")}
+                        disabled={saveDisabled}
+                    >
+                        設定を保存
+                    </Button>
                 </Stack>
             </div>
         )
     } else if (carryOverType === "all") {
         return (
             <div>
-                <p>全額を繰越し、今月は支払いを行いません。</p>
+                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>全額を繰越し、今月は支払いを行いません。</Typography>
                 <Stack spacing={2}>
                 <Button
                     size="small"
@@ -111,7 +115,7 @@ export const PaymentOption = (props: Props) => {
                     onClick={() => saveCarryOver("all")}
                     disabled={saveDisabled}
                 >
-                    変更を保存
+                    設定を保存
                 </Button>
                 </Stack>
             </div>

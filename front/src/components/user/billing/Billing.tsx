@@ -103,8 +103,8 @@ export const NextBilling = () => {
                     )
                 } else if (tabValue === "1") {
                     return (
-                        <Container sx={{width: "90%"}}>
-                            <h2>繰越設定</h2>
+                        <Container sx={{width: "90%", textAlign: "center", marginTop: "20px"}}>
+                            <Typography variant='h5'>繰越のタイプを選択</Typography>
                         <FormControl>
                             <RadioGroup
                     row
