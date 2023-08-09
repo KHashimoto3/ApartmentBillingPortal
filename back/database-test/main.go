@@ -12,6 +12,7 @@ import (
 )
 
 var db *sql.DB //DB変数の用意
+var err error
 
 // 生徒のデータ形式
 type Student struct {
@@ -46,13 +47,13 @@ func getStudentList(c *gin.Context) {
 		}
 		students = append(students, student)
 	}
-	c.String(200, "へえええおおおお！")
+	c.JSON(200, students)
 }
 
 func main() {
 
 	//環境設定ファイルの読み込み
-	err := godotenv.Load("config.env")
+	err = godotenv.Load("config.env")
 	if err != nil {
 		log.Fatal("エラー: 環境設定ファイルを読み込めません！")
 	}
@@ -67,7 +68,7 @@ func main() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", userName, password, host, port, dbName)
 
 	//データベース接続
-	db, err := sql.Open("mysql", dsn)
+	db, err = sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(err)
 	}
