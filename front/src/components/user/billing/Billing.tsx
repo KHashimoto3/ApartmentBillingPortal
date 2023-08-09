@@ -44,8 +44,8 @@ export const NextBilling = () => {
             <Tabs
                 value={tabValue}
                 onChange={(event: React.BaseSyntheticEvent, newValue: string) => setTabValue(newValue) }
-                textColor="secondary"
-                indicatorColor="secondary"
+                textColor="primary"
+                indicatorColor="primary"
                 aria-label="secondary tabs example"
             >
                 <Tab value="0" label="確認" />
