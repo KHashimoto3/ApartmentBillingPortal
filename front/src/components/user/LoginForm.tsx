@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LoginFlagContext } from './providers/LoginFlagProvider';
+import { LoginFlagContext } from '../providers/LoginFlagProvider';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -16,9 +16,9 @@ type FormValues = {
 };
 
 export const LoginForm = () => {
-    const {loginFlag, setLoginFlag} = useContext(LoginFlagContext);
+    const {setLoginFlag} = useContext(LoginFlagContext);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit} = useForm<FormValues>();
     const onSubmit = handleSubmit((data) => {
         if(data.userId === 'test' && data.password === '1234'){
             setLoginFlag(true);

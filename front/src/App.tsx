@@ -1,8 +1,7 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import {User} from './components/User';
-import {Manage} from './components/Manage';
+import {User} from './components/user/User';
+import {Manage} from './components/manage/Manage';
 
 function App() {
   return (

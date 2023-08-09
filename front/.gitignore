@@ -25,3 +25,10 @@ firebase.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# back
+../back/database-sql
+back/database-sql
+
+# vscode
+.vscode
