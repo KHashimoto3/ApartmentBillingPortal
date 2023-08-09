@@ -57,7 +57,7 @@ export const NextBilling = () => {
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 請求金額</Typography>
-                        <Typography variant='h4'>￥1,500</Typography>
+                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
                         <hr />
                         <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
                     </Stack>
@@ -71,25 +71,25 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>使用量</Typography>
-                                        <Typography variant='h4'>350 KW</Typography>
+                                        <Typography variant='h4'>{billingData.useAmount} KW</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>〜先月 繰越額</Typography>
-                                        <Typography variant='h4'>￥0</Typography>
+                                        <Typography variant='h4'>￥{billingData.beforeCarryOver}</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>請求額</Typography>
-                                        <Typography variant='h4'>￥3,500</Typography>
+                                        <Typography variant='h4'>￥{billingData.price}円</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>今月 繰越額(予定)</Typography>
-                                        <Typography variant='h4'>￥1,500</Typography>
+                                        <Typography variant='h4'>￥{billingData.carryOverPrice}</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sx={{textAlign: "center"}}>
