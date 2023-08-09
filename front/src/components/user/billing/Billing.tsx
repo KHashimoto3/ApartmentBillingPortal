@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
-import { Box, Container, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 
 interface BillingData {
     billingId: string;
@@ -66,7 +66,40 @@ export const NextBilling = () => {
             {(() => {
                 if (tabValue === "0") {
                     return (
-                        <p>１個目</p>
+                        <Container sx={{width: "80%"}}>
+                            <Grid container spacing={1}>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>使用量</Typography>
+                                        <Typography variant='h4'>350 KW</Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>〜先月 繰越額</Typography>
+                                        <Typography variant='h4'>￥0</Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>請求額</Typography>
+                                        <Typography variant='h4'>￥3,500</Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>今月 繰越額(予定)</Typography>
+                                        <Typography variant='h4'>￥1,500</Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={12} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>先月分との請求額比較</Typography>
+                                        <Typography variant='h4'>-￥1,000</Typography>
+                                    </Stack>
+                                </Grid>
+                            </Grid>
+                        </Container>
                     )
                 } else if (tabValue === "1") {
                     return (
