@@ -53,7 +53,6 @@ export const NextBilling = () => {
                 <Tab value="2" label="チャット" />
             </Tabs>
             </Container>
-            <Typography sx={{textAlign: "center", paddingTop: "30px"}} variant='h5'>こんにちは。田中さん。</Typography>
             <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
