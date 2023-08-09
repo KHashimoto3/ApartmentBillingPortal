@@ -103,8 +103,8 @@ export const NextBilling = () => {
                     )
                 } else if (tabValue === "1") {
                     return (
-                        <>
-                        <h2>繰越設定</h2>
+                        <Container sx={{width: "90%"}}>
+                            <h2>繰越設定</h2>
                         <FormControl>
                             <RadioGroup
                     row
@@ -119,7 +119,7 @@ export const NextBilling = () => {
                         </RadioGroup>
                         <PaymentOption billingData={billingData} carryOverType={value} />
                         </FormControl>
-                        </>
+                        </Container>
                     )
                 } else {
                     return (
