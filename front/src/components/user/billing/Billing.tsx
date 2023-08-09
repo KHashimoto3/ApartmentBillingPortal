@@ -37,7 +37,7 @@ export const NextBilling = () => {
     }, []);
 
     return (
-        <div className="homeContentsArea">
+        <div className="billingContentsArea">
             <h1>今月の請求</h1>
             <Paper elevation={3} children={
                 <div className="billingCardArea">
