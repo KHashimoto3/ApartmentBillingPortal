@@ -29,3 +29,6 @@ yarn-error.log*
 # back
 ../back/database-sql
 back/database-sql
+
+# vscode
+.vscode
