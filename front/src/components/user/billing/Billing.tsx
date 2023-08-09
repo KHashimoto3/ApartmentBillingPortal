@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
+import { Box, Container, Stack, Typography } from '@mui/material';
 
 interface BillingData {
     billingId: string;
@@ -38,16 +39,16 @@ export const NextBilling = () => {
 
     return (
         <div className="billingContentsArea">
-            <h1>今月の請求</h1>
-            <Paper elevation={3} children={
-                <div className="billingCardArea">
-                    <h1>合計請求額：    {billingData.finalPrice}円</h1>
-                    <hr />
-                    <p>使用量   ：     {billingData.useAmount}</p>
-                    <p>先月までの繰越額：{billingData.beforeCarryOver}円</p>
-                    <p>今月請求額：     {billingData.price}円</p>
-                    <p>今月繰越額：     {billingData.carryOverPrice}円</p>
-                </div>
+            <Typography sx={{textAlign: "center", paddingTop: "30px"}} variant='h5'>こんにちは。田中さん。</Typography>
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+                <Container sx={{width: "80%", height: "150px"}}>
+                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                        <Typography variant='h6'>8月12日 請求金額</Typography>
+                        <Typography variant='h4'>￥1,500</Typography>
+                        <hr />
+                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                    </Stack>
+                </Container>
             } />
             <h2>繰越設定</h2>
             <FormControl>
