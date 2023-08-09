@@ -11,8 +11,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var db *sql.DB //DB変数の用意
+
 // 生徒のデータ形式
-type student struct {
+type Student struct {
 	NO    int    `json:"no"`
 	ID    string `json:"id"`
 	Name  string `json:"name"`
@@ -29,7 +31,26 @@ func helloName(c *gin.Context) {
 	c.String(200, text)
 }
 
+func getStudentList(c *gin.Context) {
+	rows, err := db.Query("SELECT * FROM Student;")
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	var students []Student
+	for rows.Next() {
+		var student Student
+		if err := rows.Scan(&student.NO, &student.ID, &student.Name, &student.Grade); err != nil {
+			c.JSON(500, gin.H{"error": err.Error()})
+			return
+		}
+		students = append(students, student)
+	}
+	c.String(200, "へえええおおおお！")
+}
+
 func main() {
+
 	//環境設定ファイルの読み込み
 	err := godotenv.Load("config.env")
 	if err != nil {
@@ -55,6 +76,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/hello", hello)
 	router.GET("/hello-name", helloName)
+	router.GET("/get-student-list", getStudentList)
 
 	router.Run(":8080")
 }
