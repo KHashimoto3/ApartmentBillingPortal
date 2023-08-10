@@ -72,6 +72,21 @@ func getBillingRecord(c *gin.Context) {
 }
 
 func main() {
+	r := gin.Default()
+
+	// CORS設定
+	r.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000") // ReactアプリのURLに置き換える
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
+
 	//環境設定ファイルの読み込み
 	err = godotenv.Load("config.env")
 	if err != nil {
