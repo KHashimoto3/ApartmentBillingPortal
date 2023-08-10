@@ -5,19 +5,19 @@ import Container from '@mui/material/Container';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
-import HomeIcon from '@mui/icons-material/Home';
-import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
+import EditIcon from '@mui/icons-material/Edit';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import SettingsIcon from '@mui/icons-material/Settings';
 
-import { UserViewContents } from './UserViewContents';
+import { ManageViewContents } from './ManageViewContents';
 
-export const UserViewController = () => {
+export const ManageViewController = () => {
     const [navigationValue, setNavigationValue] = useState<number>(0);
 
     return (
         <div>
             <Container maxWidth="md" style={{height:"70vh"}}>
-                <UserViewContents contentsNo={navigationValue} />
+                <ManageViewContents contentsNo={navigationValue} />
                 <BottomNavigation
                     showLabels
                     value={navigationValue}
@@ -25,9 +25,9 @@ export const UserViewController = () => {
                         setNavigationValue(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="請求入力" icon={<HomeIcon />} />
-                    <BottomNavigationAction label="請求一覧" icon={<CurrencyYenIcon />} />
-                    <BottomNavigationAction label="請求日設定" icon={<FormatListBulletedIcon />} />
+                    <BottomNavigationAction label="請求入力" icon={<EditIcon />} />
+                    <BottomNavigationAction label="請求一覧・処理" icon={<FormatListBulletedIcon />} />
+                    <BottomNavigationAction label="請求日設定" icon={<SettingsIcon />} />
                 </BottomNavigation>
             </Container>
         </div>
