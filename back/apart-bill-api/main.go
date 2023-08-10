@@ -14,6 +14,20 @@ import (
 var db *sql.DB
 var err error
 
+// 支払い
+type billing struct {
+	BillingId       string `json:"billing_id"`
+	UserId          string `json:"user_id"`
+	UseAmount       int    `json:"use_amount"`
+	Price           int    `json:"price"`
+	BeforeCarryOver int    `json:"before_carry_over"`
+	CarryOverType   string `json:"carry_over_type"`
+	CarryOverPrice  int    `json:"carry_over_price"`
+	FinalPrice      int    `json:"final_price"`
+	DateId          int    `json:"date_id"`
+	Paid            bool   `json:"paid"`
+}
+
 func hello(c *gin.Context) {
 	c.String(200, "hello!")
 }
