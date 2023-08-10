@@ -25,7 +25,7 @@ type billing struct {
 	CarryOverPrice  int    `json:"carry_over_price"`
 	FinalPrice      int    `json:"final_price"`
 	DateId          int    `json:"date_id"`
-	Paid            bool   `json:"paid"`
+	Paid            int    `json:"paid"`
 }
 
 func hello(c *gin.Context) {
