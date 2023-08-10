@@ -22,11 +22,11 @@ interface BillingData {
     carryOverPrice: number;
     finalPrice: number;
     dateId: number;
-    paid: boolean;
+    paid: number;
 };
 
 export const NextBilling = () => {
-    const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: false});
+    const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
     const [value, setValue] = useState<string>('no');
 
     const [tabValue, setTabValue] = useState<string>("0");
@@ -34,7 +34,7 @@ export const NextBilling = () => {
 
     //請求額を設定する
     useEffect(() => {
-        const billingDataSrc: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: false};
+        const billingDataSrc: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0};
         setBillingData(billingDataSrc);
     }, []);
 

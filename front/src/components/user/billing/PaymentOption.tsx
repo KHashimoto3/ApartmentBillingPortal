@@ -13,7 +13,7 @@ interface BillingData {
     carryOverPrice: number;
     finalPrice: number;
     dateId: number;
-    paid: boolean;
+    paid: number;
 };
 
 type Props = {
