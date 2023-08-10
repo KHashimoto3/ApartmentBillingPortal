@@ -22,6 +22,26 @@ export const Process = (props: Props) => {
             <p>処理するユーザ：{userId}</p>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>
 
+            {(() => {
+                if (stepperStep === 0) {
+                    return (
+                        <h1>ステップ1</h1>
+                    )
+                } else if (stepperStep === 1) {
+                    return (
+                        <h1>ステップ2</h1>
+                    )
+                } else if (stepperStep === 2) {
+                    return (
+                        <h1>ステップ3</h1>
+                    )
+                } else {
+                    return (
+                        <h1>範囲外のステップです。</h1>
+                    )
+                }
+            })()}
+
             <MobileStepper
         variant="text"
         steps={maxSteps}
