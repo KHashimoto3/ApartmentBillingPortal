@@ -32,6 +32,7 @@ func hello(c *gin.Context) {
 	c.String(200, "hello!")
 }
 
+// 請求情報の一覧を取得する
 func getBillingList(c *gin.Context) {
 	rows, err := db.Query("SELECT * FROM billing;")
 	if err != nil {
