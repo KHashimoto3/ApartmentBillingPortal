@@ -1,5 +1,5 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Button, MobileStepper, useTheme } from "@mui/material";
+import { Button, Container, MobileStepper, useTheme } from "@mui/material";
 import { useState } from "react";
 
 type Props = {
@@ -17,9 +17,9 @@ export const Process = (props: Props) => {
     const theme = useTheme();
 
     return (
-        <>
-            <h1>プロセス</h1>
-            <p>表示するユーザ：{userId}</p>
+        <Container sx={{width: "90%"}}>
+            <h1>請求処理</h1>
+            <p>処理するユーザ：{userId}</p>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>
 
             <MobileStepper
@@ -33,7 +33,7 @@ export const Process = (props: Props) => {
             onClick={() => setStepperStep(stepperStep + 1)}
             disabled={stepperStep === maxSteps - 1}
           >
-            Next
+            次へ
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -48,10 +48,10 @@ export const Process = (props: Props) => {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
+            戻る
           </Button>
         }
       />
-        </>
+        </Container>
     )
 }
