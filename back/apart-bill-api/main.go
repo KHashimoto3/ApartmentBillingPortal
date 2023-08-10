@@ -32,6 +32,24 @@ func hello(c *gin.Context) {
 	c.String(200, "hello!")
 }
 
+func getBillingList(c *gin.Context) {
+	rows, err := db.Query("SELECT * FROM billing;")
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	var bills []billing
+	for rows.Next() {
+		var bill billing
+		if err := rows.Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.FinalPrice, &bill.DateId, &bill.Paid); err != nil {
+			c.JSON(500, gin.H{"error": err.Error()})
+			return
+		}
+		bills = append(bills, bill)
+	}
+	c.JSON(200, bills)
+}
+
 func main() {
 	//環境設定ファイルの読み込み
 	err = godotenv.Load("config.env")
@@ -57,6 +75,7 @@ func main() {
 
 	router := gin.Default()
 	router.GET("/", hello)
+	router.GET("/get-bill-list", getBillingList)
 
 	router.Run(":8080")
 }
