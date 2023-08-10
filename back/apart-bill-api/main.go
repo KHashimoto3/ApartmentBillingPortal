@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -51,6 +52,25 @@ func getBillingList(c *gin.Context) {
 	c.JSON(200, bills)
 }
 
+// 渡されたパラメータのuserIdに該当する請求データを1件取得する
+func getBillingRecord(c *gin.Context) {
+	userId := c.Query("userId")
+	var bill billing
+	err := db.QueryRow("SELECT * FROM billing WHERE user_id = ?", userId).
+		Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.FinalPrice, &bill.DateId, &bill.Paid)
+	if errors.Is(err, sql.ErrNoRows) {
+		//レコードがなかったときのエラー
+		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
+		return
+	}
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//レコードが見つかった場合の処理
+	c.JSON(200, bill)
+}
+
 func main() {
 	//環境設定ファイルの読み込み
 	err = godotenv.Load("config.env")
@@ -77,6 +97,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/", hello)
 	router.GET("/get-bill-list", getBillingList)
+	router.GET("/get-bill-rec", getBillingRecord)
 
 	router.Run(":8080")
 }
