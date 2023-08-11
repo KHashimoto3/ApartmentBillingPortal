@@ -24,7 +24,7 @@ export const Process2 = (props: Props) => {
     
     //お釣りの再計算
     useEffect(() => {
-        setChargePrice(keepPrice - billingData.finalPrice)
+        setChargePrice(keepPrice - billingData.paidPrice);
     }, [keepPrice]);
 
     return (
@@ -33,7 +33,7 @@ export const Process2 = (props: Props) => {
                 <Container sx={{width: "80%", height: "120px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 {userName}</Typography>
-                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <Typography variant='h4'>￥{billingData.paidPrice}</Typography>
                     </Stack>
                 </Container>
             } />
