@@ -21,7 +21,7 @@ export const Process = (props: Props) => {
     const theme = useTheme();
 
     return (
-        <Container sx={{width: "90%"}}>
+        <Container sx={{width: "90%", height: "100%"}}>
             <h1>請求処理</h1>
             <p>処理するユーザ：{userId}</p>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>

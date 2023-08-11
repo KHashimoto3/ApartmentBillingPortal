@@ -29,7 +29,7 @@ export const Select = (props: Props) => {
     ];
 
     return (
-        <Container sx={{width: "90%", marginTop: "30px"}}>
+        <Container sx={{width: "90%", height: "100%", marginTop: "30px"}}>
             <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500}} aria-label="simple table">
           <TableHead>
