@@ -38,9 +38,9 @@ export const Select = (props: Props) => {
           <TableHead>
             <TableRow>
               <TableCell align="center">部屋No.</TableCell>
-              <TableCell sx={{ minWidth: 150 }} align="center">氏名</TableCell>
+              <TableCell sx={{ minWidth: 70 }} align="center">氏名</TableCell>
               <TableCell align="right">請求予定額</TableCell>
-              <TableCell align="right">チェック</TableCell>
+              <TableCell align="center">チェック</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -54,24 +54,24 @@ export const Select = (props: Props) => {
                 <TableCell component="th" scope="row" align="center">
                   {data.no}
                 </TableCell>
-                <TableCell sx={{ minWidth: 150 }} align="center">{data.name}</TableCell>
+                <TableCell sx={{ minWidth: 70 }} align="center">{data.name}</TableCell>
                 <TableCell align="right">￥{data.finalPrice}</TableCell>
                 {(() => {
                 if (data.paid === 0) {
                     return (
-                        <TableCell align="right"><HorizontalRuleIcon /></TableCell>
+                        <TableCell align="center"><HorizontalRuleIcon /></TableCell>
                     )
                 } else if (data.paid === 1) {
                     return (
-                        <TableCell align="right"><CheckIcon /></TableCell>
+                        <TableCell align="center"><CheckIcon /></TableCell>
                     )
                 } else if (data.paid === 2) {
                     return (
-                        <TableCell align="right"><ChangeCircleIcon /></TableCell>
+                        <TableCell align="center"><ChangeCircleIcon /></TableCell>
                     )
                 } else {
                     return (
-                        <TableCell align="right"></TableCell>
+                        <TableCell align="center"></TableCell>
                     )
                 }
             })()}
