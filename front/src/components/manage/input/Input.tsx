@@ -1,6 +1,7 @@
 import { Button, Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 
 import { BillingData } from "../../types/BillingData";
+import { useState } from "react";
 
 interface BillInputList {
     no: number;
@@ -11,15 +12,33 @@ interface BillInputList {
 }
 
 export const Input = () => {
-    const listData: BillInputList[] = [
-        {no: 1, name: "井上 太郎", useAmount: 0, price: 0, beforeCarryOver: 2000},
-        {no: 2, name: "鈴木 太郎", useAmount: 0, price: 0, beforeCarryOver: 0},
-        {no: 3, name: "山田 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
-        {no: 4, name: "高橋 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
-        {no: 5, name: "福島 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
-        {no: 6, name: "宮城 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
-        {no: 7, name: "大阪 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
-    ];
+    const [listData, setListData] = useState<BillInputList[]>([
+      {no: 1, name: "井上 太郎", useAmount: 0, price: 0, beforeCarryOver: 2000},
+      {no: 2, name: "鈴木 太郎", useAmount: 0, price: 0, beforeCarryOver: 0},
+      {no: 3, name: "山田 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+      {no: 4, name: "高橋 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+      {no: 5, name: "福島 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+      {no: 6, name: "宮城 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+      {no: 7, name: "大阪 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+  ]);
+
+  const updateAmount = (updatedItem: BillInputList) => {
+    setListData(prevListData =>
+      prevListData.map(item =>
+        item.no === updatedItem.no ? { ...item, ...updatedItem } : item
+      )
+    );
+    console.log("更新しました。")
+  };
+
+  const updatePrice = (updatedItem: BillInputList) => {
+    setListData(prevListData =>
+      prevListData.map(item =>
+        item.no === updatedItem.no ? { ...item, ...updatedItem } : item
+      )
+    );
+    console.log("更新しました。")
+  };
 
     return (
         <Container sx={{width: "90%", height: "100%", marginTop: "30px"}}>
@@ -51,7 +70,7 @@ export const Input = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {listData.map((data) => (
+            {listData.map((data, idx) => (
               <TableRow
                 key={data.no}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -61,10 +80,10 @@ export const Input = () => {
                 </TableCell>
                 <TableCell sx={{ minWidth: 100 }} align="center">{data.name}</TableCell>
                 <TableCell component="th" scope="row" align="center">
-                  <input type="text" size={5} value={data.useAmount} />
+                  <input type="text" size={5} onChange={(event) => updateAmount({ ...data, useAmount: Number(event.target.value) })} value={data.useAmount} />
                 </TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">
-                  ￥<input type="text" size={5} value={data.price} />
+                  ￥<input type="text" size={5} onChange={(event) => updatePrice({ ...data, price: Number(event.target.value) })} value={data.price} />
                 </TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver}</TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver + data.price}</TableCell>
