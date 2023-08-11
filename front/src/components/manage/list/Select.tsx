@@ -8,6 +8,7 @@ type Props = {
     setStep: React.Dispatch<React.SetStateAction<number>>;
     userId: string;
     setUserId: React.Dispatch<React.SetStateAction<string>>;
+    setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface BillListData {
@@ -21,6 +22,7 @@ interface BillListData {
 export const Select = (props: Props) => {
     const setStep = props.setStep;
     const setUserId = props.setUserId;
+    const setUserName = props.setUserName;
 
     const listData: BillListData[] = [
         {no: 1, userId: "test1", name: "山田 太郎", finalPrice: 3500, paid: 0},
@@ -43,7 +45,7 @@ export const Select = (props: Props) => {
           <TableBody>
             {listData.map((data) => (
               <TableRow
-                onClick={() => {setUserId(data.userId); setStep(1);}}
+                onClick={() => {setUserId(data.userId); setUserName(data.name); setStep(1);}}
                 key={data.no}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 style={{cursor: "pointer"}}

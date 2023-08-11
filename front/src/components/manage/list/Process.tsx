@@ -11,12 +11,14 @@ type Props = {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     userId: string;
+    userName: string;
 }
 
 
 export const Process = (props: Props) => {
     const setStep = props.setStep;
     const userId = props.userId;
+    const userName = props.userName;
 
     const [stepperStep, setStepperStep] = useState<number>(0);
     const maxSteps = 3;
@@ -28,13 +30,12 @@ export const Process = (props: Props) => {
     return (
         <Container sx={{width: "90%", height: "100%"}}>
             <h1>請求処理</h1>
-            <p>処理するユーザ：{userId}</p>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>
 
             <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                        <Typography variant='h6'>8月12日 請求金額</Typography>
+                        <Typography variant='h6'>8月12日 {userName}</Typography>
                         <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
                         <hr />
                         <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
