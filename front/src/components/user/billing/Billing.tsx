@@ -38,7 +38,9 @@ export const NextBilling = () => {
     const getBillingData = async (userId: string) => {
         const url = "http://localhost:8080/get-bill-rec?userId=" + userId;
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {method:'GET' ,mode: "cors", headers: {
+                'Content-Type': 'application/json'
+            }});
             if (response.ok) {
                 const data: BillingData = await response.json();
                 setBillingData(data);

@@ -76,7 +76,7 @@ func main() {
 
 	// CORS設定
 	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000") // ReactアプリのURLに置き換える
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost") // ReactアプリのURLに置き換える
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type")
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
