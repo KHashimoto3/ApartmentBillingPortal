@@ -1,4 +1,4 @@
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 
 import { BillingData } from "../../types/BillingData";
 
@@ -20,15 +20,28 @@ export const Input = () => {
 
     return (
         <Container sx={{width: "90%", height: "100%", marginTop: "30px"}}>
-          <Typography variant="h4">請求入力</Typography>
+            <Grid container spacing={2}>
+                <Grid item xs={10}>
+                    <Typography variant="h4">請求入力</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => alert("保存しました。")}
+                    >
+                        保存
+                    </Button>
+                </Grid>
+            </Grid>
             <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500}} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell sx={{ minWidth: 50 }}  align="center">部屋No.</TableCell>
-              <TableCell sx={{ minWidth: 70 }} align="center">氏名</TableCell>
+              <TableCell sx={{ minWidth: 100 }} align="center">氏名</TableCell>
               <TableCell align="center">使用量</TableCell>
-              <TableCell align="center">金額</TableCell>
+              <TableCell sx={{ minWidth: 70 }} align="center">金額</TableCell>
               <TableCell sx={{ minWidth: 70 }} align="center">繰越金</TableCell>
               <TableCell sx={{ minWidth: 70 }} align="center">合計額</TableCell>
             </TableRow>
@@ -42,11 +55,11 @@ export const Input = () => {
                 <TableCell sx={{ minWidth: 50 }}  component="th" scope="row" align="center">
                   {data.no}
                 </TableCell>
-                <TableCell sx={{ minWidth: 70 }} align="center">{data.name}</TableCell>
+                <TableCell sx={{ minWidth: 100 }} align="center">{data.name}</TableCell>
                 <TableCell component="th" scope="row" align="center">
                   <input type="text" size={5} value={data.useAmount} />
                 </TableCell>
-                <TableCell component="th" scope="row" align="center">
+                <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">
                   ￥<input type="text" size={5} value={data.price} />
                 </TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver}</TableCell>
