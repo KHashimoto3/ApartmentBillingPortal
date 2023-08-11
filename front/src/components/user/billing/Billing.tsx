@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
-import { Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Container, Grid, Stack, Tab, Tabs, ThemeProvider, Typography, createTheme } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
 
@@ -27,8 +27,27 @@ export const NextBilling = () => {
         setBillingData(billingDataSrc);
     }, []);
 
+    const userTabTheme = createTheme({
+        palette: {
+            mode: 'light',
+            primary: {
+                main: '#26c988'
+            }
+        }
+    })
+
+    const userPrimaryTheme= createTheme({
+        palette: {
+            mode: 'light',
+            primary: {
+                main: '#26c988'
+            }
+        }
+    })
+
     return (
         <div className="billingContentsArea">
+            <ThemeProvider theme={userTabTheme}>
             <Container sx={{width: "80%"}}>
             <Tabs
                 value={tabValue}
@@ -42,6 +61,8 @@ export const NextBilling = () => {
                 <Tab value="2" label="チャット" />
             </Tabs>
             </Container>
+            </ThemeProvider>
+            
             <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
@@ -92,7 +113,8 @@ export const NextBilling = () => {
                     )
                 } else if (tabValue === "1") {
                     return (
-                        <Container sx={{width: "90%", textAlign: "center", marginTop: "20px"}}>
+                        <ThemeProvider theme={userPrimaryTheme}>
+                            <Container sx={{width: "90%", textAlign: "center", marginTop: "20px"}}>
                             <Typography variant='h5'>繰越のタイプを選択</Typography>
                         <FormControl>
                             <RadioGroup
@@ -109,6 +131,8 @@ export const NextBilling = () => {
                         <PaymentOption billingData={billingData} carryOverType={value} />
                         </FormControl>
                         </Container>
+                        </ThemeProvider>
+                        
                     )
                 } else {
                     return (
