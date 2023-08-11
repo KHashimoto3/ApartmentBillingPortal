@@ -26,7 +26,7 @@ export const Input = () => {
                 </Grid>
                 <Grid item xs={2}>
                     <Button
-                        size="small"
+                        size="medium"
                         variant="contained"
                         onClick={() => alert("保存しました。")}
                     >
