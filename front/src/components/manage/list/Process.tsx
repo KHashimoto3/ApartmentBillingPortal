@@ -1,5 +1,5 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Container, MobileStepper, Paper, Stack, Typography, useTheme } from "@mui/material";
+import { Button, Container, MobileStepper, Paper, Stack, Tab, Tabs, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Process1 } from "./Process1";
 import { Process2 } from "./Process2";
@@ -26,43 +26,11 @@ export const Process = (props: Props) => {
     //請求データを格納する
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
 
-    return (
-        <Container sx={{width: "90%", height: "100%"}}>
-            <Typography variant="h5">請求処理</Typography>
-            <button onClick={() =>  setStep(0)}>選択に戻る</button>
+    const [tabValue, setTabValue] = useState<string>("0");
 
-            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
-                <Container sx={{width: "80%", height: "150px"}}>
-                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                        <Typography variant='h6'>8月12日 {userName}</Typography>
-                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
-                        <hr />
-                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
-                    </Stack>
-                </Container>
-            } />
-
-            {(() => {
-                if (stepperStep === 0) {
-                    return (
-                        <Process1 billingData={billingData} setBillingData={setBillingData} />
-                    )
-                } else if (stepperStep === 1) {
-                    return (
-                        <Process2 billingData={billingData} setBillingData={setBillingData} />
-                    )
-                } else if (stepperStep === 2) {
-                    return (
-                        <Process3 billingData={billingData} setBillingData={setBillingData} />
-                    )
-                } else {
-                    return (
-                        <h1>範囲外のステップです。</h1>
-                    )
-                }
-            })()}
-
-            <MobileStepper
+    const Step = () => {
+      return (
+        <MobileStepper
         variant="text"
         steps={maxSteps}
         position="static"
@@ -92,6 +60,77 @@ export const Process = (props: Props) => {
           </Button>
         }
       />
+      )
+    }
+
+    return (
+        <Container sx={{width: "90%", height: "100%"}}>
+            <button onClick={() =>  setStep(0)}>選択に戻る</button>
+
+            <Container sx={{width: "80%"}}>
+            <Tabs
+                value={tabValue}
+                onChange={(event: React.BaseSyntheticEvent, newValue: string) => setTabValue(newValue) }
+                textColor="primary"
+                indicatorColor="primary"
+                aria-label="secondary tabs example"
+            >
+                <Tab value="0" label="確認" />
+                <Tab value="1" label="集金" />
+                <Tab value="2" label="チャット" />
+            </Tabs>
+            </Container>
+
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+                <Container sx={{width: "80%", height: "150px"}}>
+                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                        <Typography variant='h6'>8月12日 {userName}</Typography>
+                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <hr />
+                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                    </Stack>
+                </Container>
+            } />
+
+            {(() => {
+                if (tabValue === "0") {
+                  return (
+                    <h1>確認タブ</h1>
+                  )
+                } else if (tabValue === "1") {
+                  if (stepperStep === 0) {
+                    return (
+                      <>
+                         <Process1 billingData={billingData} setBillingData={setBillingData} />
+                        <Step />
+                      </>
+                    )
+                  } else if (stepperStep === 1) {
+                    return (
+                      <>
+                        <Process2 billingData={billingData} setBillingData={setBillingData} />
+                         <Step />
+                      </>
+                    )
+                  } else if (stepperStep === 2) {
+                    return (
+                      <>
+                        <Process3 billingData={billingData} setBillingData={setBillingData} />
+                        <Step />
+                      </>
+                    )
+                  } else {
+                    return (
+                        <h1>範囲外のステップです。</h1>
+                    )
+                  }
+                } else {
+                  return (
+                    <h1>チャットタブ</h1>
+                  )
+                }
+            })()}
+
         </Container>
     )
 }
