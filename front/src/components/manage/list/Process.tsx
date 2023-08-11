@@ -1,5 +1,5 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Container, MobileStepper, useTheme } from "@mui/material";
+import { Button, Container, MobileStepper, Paper, Stack, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Process1 } from "./Process1";
 import { Process2 } from "./Process2";
@@ -30,6 +30,17 @@ export const Process = (props: Props) => {
             <h1>請求処理</h1>
             <p>処理するユーザ：{userId}</p>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>
+
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+                <Container sx={{width: "80%", height: "150px"}}>
+                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                        <Typography variant='h6'>8月12日 請求金額</Typography>
+                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <hr />
+                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                    </Stack>
+                </Container>
+            } />
 
             {(() => {
                 if (stepperStep === 0) {
