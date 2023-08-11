@@ -61,12 +61,12 @@ export const Input = () => {
         <Table sx={{ minWidth: 500}} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ minWidth: 50 }}  align="center">部屋No.</TableCell>
+              <TableCell sx={{ minWidth: 50, fontWeight: "bold" }}  align="center">部屋No.</TableCell>
               <TableCell sx={{ minWidth: 100 }} align="center">氏名</TableCell>
               <TableCell align="center">使用量</TableCell>
               <TableCell sx={{ minWidth: 70 }} align="center">金額</TableCell>
               <TableCell sx={{ minWidth: 70 }} align="center">繰越金</TableCell>
-              <TableCell sx={{ minWidth: 70 }} align="center">合計額</TableCell>
+              <TableCell sx={{ minWidth: 70, fontWeight: "bold" }} align="center">合計額</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -75,7 +75,7 @@ export const Input = () => {
                 key={data.no}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell sx={{ minWidth: 50 }}  component="th" scope="row" align="center">
+                <TableCell sx={{ minWidth: 50, fontWeight: "bold" }}  component="th" scope="row" align="center">
                   {data.no}
                 </TableCell>
                 <TableCell sx={{ minWidth: 100 }} align="center">{data.name}</TableCell>
@@ -86,7 +86,7 @@ export const Input = () => {
                   ￥<input type="text" size={5} onChange={(event) => updatePrice({ ...data, price: Number(event.target.value) })} value={data.price} />
                 </TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver}</TableCell>
-                <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver + data.price}</TableCell>
+                <TableCell sx={{ minWidth: 70, fontWeight: "bold" }} component="th" scope="row" align="center">￥{data.beforeCarryOver + data.price}</TableCell>
               </TableRow>
             ))}
           </TableBody>
