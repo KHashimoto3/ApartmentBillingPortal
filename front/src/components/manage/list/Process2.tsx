@@ -29,7 +29,7 @@ export const Process2 = (props: Props) => {
 
     return (
         <Container sx={{width: "100%", height: "90%", overflowY: "scroll"}}>
-            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto", background: "linear-gradient(156deg, rgba(255, 255, 255, 1), rgba(244, 244, 244, 1))"}} children={
                 <Container sx={{width: "80%", height: "120px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 {userName}</Typography>
