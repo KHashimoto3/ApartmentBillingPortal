@@ -10,20 +10,9 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
-import { Box, Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 
-interface BillingData {
-    billingId: string;
-    userId: string;
-    useAmount: number;
-    price: number;
-    beforeCarryOver: number;
-    carryOverType: string;
-    carryOverPrice: number;
-    finalPrice: number;
-    dateId: number;
-    paid: number;
-};
+import { BillingData } from '../../types/BillingData';
 
 export const NextBilling = () => {
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
