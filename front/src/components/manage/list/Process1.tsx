@@ -35,7 +35,7 @@ export const Process1 = (props: Props) => {
 
     //請求情報更新
     const upDateBillData = () => {
-        const newBillingData: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: carryOverPrice, finalPrice: paymentPrice, dateId: 0, paid: 0};
+        const newBillingData: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: carryOverPrice, dateId: 0, paidPrice: paymentPrice, paid: 0};
         setBillingData(newBillingData);
     }
 
@@ -45,9 +45,9 @@ export const Process1 = (props: Props) => {
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 {userName}</Typography>
-                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <Typography variant='h4'>￥{billingData.beforeCarryOver + billingData.price}</Typography>
                         <hr />
-                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                        <Typography variant='body1'>支払い予定額  ￥{(billingData.beforeCarryOver + billingData.price) - billingData.carryOverPrice}</Typography>
                     </Stack>
                 </Container>
             } />

@@ -15,7 +15,7 @@ import { Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { BillingData } from '../../types/BillingData';
 
 export const NextBilling = () => {
-    const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
+    const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, dateId: 0, paidPrice: 0, paid: 0});
     const [value, setValue] = useState<string>('no');
 
     const [tabValue, setTabValue] = useState<string>("0");
@@ -62,7 +62,7 @@ export const NextBilling = () => {
 
     //請求額を設定する
     /*useEffect(() => {
-        const billingDataSrc: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0};
+        const billingDataSrc: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, dateId: 0, paidPrice: 0, paid: 0};
         setBillingData(billingDataSrc);
     }, []);*/
 
@@ -85,9 +85,9 @@ export const NextBilling = () => {
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 請求金額</Typography>
-                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <Typography variant='h4'>￥{billingData.beforeCarryOver + billingData.price}</Typography>
                         <hr />
-                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                        <Typography variant='body1'>支払い予定額  ￥{(billingData.beforeCarryOver + billingData.price) - billingData.carryOverPrice}</Typography>
                     </Stack>
                 </Container>
             } />

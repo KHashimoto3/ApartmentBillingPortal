@@ -6,7 +6,7 @@ export type BillingData = {
     beforeCarryOver: number;
     carryOverType: string;
     carryOverPrice: number;
-    finalPrice: number;
     dateId: number;
+    paidPrice: number;
     paid: number;
 };
