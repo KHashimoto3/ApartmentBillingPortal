@@ -1,4 +1,4 @@
-import { Button, Container, Stack, TextField, Typography } from "@mui/material";
+import { Button, Container, Paper, Stack, TextField, Typography } from "@mui/material";
 import { BillingData } from "../../types/BillingData";
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -11,6 +11,7 @@ type Props = {
     setStep: React.Dispatch<React.SetStateAction<number>>;
     stepperStep: number;
     setStepperStep: React.Dispatch<React.SetStateAction<number>>;
+    userName: string;
 }
 
 export const Process1 = (props: Props) => {
@@ -20,6 +21,7 @@ export const Process1 = (props: Props) => {
     const setStep = props.setStep;
     const stepperStep = props.stepperStep;
     const setStepperStep = props.setStepperStep;
+    const userName = props.userName;
 
     //一部繰越で、今月支払う金額
     const [paymentPrice, setPaymentPrice] = useState<number>((billingData.price + billingData.beforeCarryOver) - billingData.carryOverPrice);
@@ -38,7 +40,18 @@ export const Process1 = (props: Props) => {
     }
 
     return (
-            <Container sx={{width: "90%", height: "100%", textAlign: "center"}}>
+        <>
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+                <Container sx={{width: "80%", height: "150px"}}>
+                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                        <Typography variant='h6'>8月12日 {userName}</Typography>
+                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                        <hr />
+                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
+                    </Stack>
+                </Container>
+            } />
+             <Container sx={{width: "90%", height: "100%", textAlign: "center"}}>
                 <Stack spacing={1} sx={{marginTop: "20px"}}>
                     <Typography variant="h6">集金金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
@@ -61,5 +74,7 @@ export const Process1 = (props: Props) => {
                     </Button>
                 </Stack>
             </Container>
+        </>
+           
     );
 }

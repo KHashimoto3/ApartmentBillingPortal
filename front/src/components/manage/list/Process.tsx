@@ -42,17 +42,6 @@ export const Process = (props: Props) => {
             </Tabs>
             </Container>
 
-            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
-                <Container sx={{width: "80%", height: "150px"}}>
-                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                        <Typography variant='h6'>8月12日 {userName}</Typography>
-                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
-                        <hr />
-                        <Typography variant='body1'>支払い予定額  ￥1,500</Typography>
-                    </Stack>
-                </Container>
-            } />
-
             {(() => {
                 if (tabValue === "0") {
                   return (
@@ -61,11 +50,11 @@ export const Process = (props: Props) => {
                 } else if (tabValue === "1") {
                   if (stepperStep === 0) {
                     return (
-                         <Process1 billingData={billingData} setBillingData={setBillingData} step={step} setStep={setStep} stepperStep={stepperStep} setStepperStep={setStepperStep} />
+                         <Process1 billingData={billingData} setBillingData={setBillingData} step={step} setStep={setStep} stepperStep={stepperStep} setStepperStep={setStepperStep} userName={userName} />
                     )
                   } else if (stepperStep === 1) {
                     return (
-                        <Process2 billingData={billingData} setBillingData={setBillingData} stepperStep={stepperStep} setStepperStep={setStepperStep} />
+                        <Process2 billingData={billingData} setBillingData={setBillingData} stepperStep={stepperStep} setStepperStep={setStepperStep} userName={userName} />
                     )
                   } else if (stepperStep === 2) {
                     return (

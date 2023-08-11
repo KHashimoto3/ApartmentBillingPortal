@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BillingData } from "../../types/BillingData";
-import { Button, Container, Stack, TextField, Typography } from "@mui/material";
+import { Button, Container, Paper, Stack, TextField, Typography } from "@mui/material";
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
@@ -9,12 +9,14 @@ type Props = {
     setBillingData: React.Dispatch<React.SetStateAction<BillingData>>
     stepperStep: number;
     setStepperStep: React.Dispatch<React.SetStateAction<number>>;
+    userName: string;
 }
 
 export const Process2 = (props: Props) => {
     const billingData = props.billingData;
     const stepperStep = props.stepperStep;
     const setStepperStep = props.setStepperStep;
+    const userName = props.userName;
 
     //一部繰越で、今月支払う金額
     const [keepPrice, setKeepPrice] = useState<number>(0);
@@ -27,6 +29,15 @@ export const Process2 = (props: Props) => {
     }, [keepPrice]);
 
     return (
+        <>
+            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+                <Container sx={{width: "80%", height: "120px"}}>
+                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                        <Typography variant='h6'>8月12日 {userName}</Typography>
+                        <Typography variant='h4'>￥{billingData.finalPrice}</Typography>
+                    </Stack>
+                </Container>
+            } />
             <Container sx={{width: "90%", height: "100%", textAlign: "center"}}>
                 <Stack spacing={1} sx={{marginTop: "20px"}}>
                     <Typography variant="h6">預かり金額を入力</Typography>
@@ -61,5 +72,7 @@ export const Process2 = (props: Props) => {
                     </Button>
                 </Stack>
             </Container>
+        </>
+            
     );
 }
