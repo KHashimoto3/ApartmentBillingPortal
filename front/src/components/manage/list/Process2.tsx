@@ -6,7 +6,6 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 type Props = {
     billingData: BillingData;
-    setBillingData: React.Dispatch<React.SetStateAction<BillingData>>
     stepperStep: number;
     setStepperStep: React.Dispatch<React.SetStateAction<number>>;
     userName: string;

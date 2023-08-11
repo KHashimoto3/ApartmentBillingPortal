@@ -5,7 +5,6 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 type Props = {
     billingData: BillingData;
-    setBillingData: React.Dispatch<React.SetStateAction<BillingData>>
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     userName: string;
