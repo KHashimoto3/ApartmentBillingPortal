@@ -1,12 +1,16 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { Button, Container, MobileStepper, useTheme } from "@mui/material";
 import { useState } from "react";
+import { Process1 } from "./Process1";
+import { Process2 } from "./Process2";
+import { Process3 } from "./Process3";
 
 type Props = {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     userId: string;
 }
+
 
 export const Process = (props: Props) => {
     const setStep = props.setStep;
@@ -25,15 +29,15 @@ export const Process = (props: Props) => {
             {(() => {
                 if (stepperStep === 0) {
                     return (
-                        <h1>ステップ1</h1>
+                        <Process1 />
                     )
                 } else if (stepperStep === 1) {
                     return (
-                        <h1>ステップ2</h1>
+                        <Process2 />
                     )
                 } else if (stepperStep === 2) {
                     return (
-                        <h1>ステップ3</h1>
+                        <Process3 />
                     )
                 } else {
                     return (
