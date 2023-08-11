@@ -5,6 +5,8 @@ import { Process1 } from "./Process1";
 import { Process2 } from "./Process2";
 import { Process3 } from "./Process3";
 
+import { BillingData } from "../../types/BillingData";
+
 type Props = {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -19,6 +21,9 @@ export const Process = (props: Props) => {
     const [stepperStep, setStepperStep] = useState<number>(0);
     const maxSteps = 3;
     const theme = useTheme();
+
+    //請求データを格納する
+    const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
 
     return (
         <Container sx={{width: "90%", height: "100%"}}>
