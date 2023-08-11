@@ -31,6 +31,12 @@ export const Process1 = (props: Props) => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
     }, [paymentPrice]);
 
+    //請求情報更新
+    const upDateBillData = () => {
+        const newBillingData: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: carryOverPrice, finalPrice: paymentPrice, dateId: 0, paid: 0};
+        setBillingData(newBillingData);
+    }
+
     return (
             <Container sx={{width: "90%", height: "100%", textAlign: "center"}}>
                 <Stack spacing={1} sx={{marginTop: "20px"}}>
@@ -42,7 +48,7 @@ export const Process1 = (props: Props) => {
                     <Button
                         size="small"
                         variant="contained"
-                        onClick={() => setStepperStep(stepperStep + 1)}
+                        onClick={() => {upDateBillData(); setStepperStep(stepperStep + 1);}}
                     >
                         次へ
                     </Button>
