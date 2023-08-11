@@ -24,7 +24,7 @@ export const Process = (props: Props) => {
     //請求データを格納する
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
 
-    const [tabValue, setTabValue] = useState<string>("0");
+    const [tabValue, setTabValue] = useState<string>("1");
 
     return (
         <Container sx={{width: "90%", height: "100%"}}>
