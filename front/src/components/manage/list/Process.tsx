@@ -28,7 +28,7 @@ export const Process = (props: Props) => {
 
     return (
         <Container sx={{width: "90%", height: "100%"}}>
-            <h1>請求処理</h1>
+            <Typography variant="h5">請求処理</Typography>
             <button onClick={() =>  setStep(0)}>選択に戻る</button>
 
             <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
