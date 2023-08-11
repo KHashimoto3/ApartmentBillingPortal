@@ -1,5 +1,4 @@
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Container, MobileStepper, Paper, Stack, Tab, Tabs, Typography, useTheme } from "@mui/material";
+import { Container, Paper, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { useState } from "react";
 import { Process1 } from "./Process1";
 import { Process2 } from "./Process2";

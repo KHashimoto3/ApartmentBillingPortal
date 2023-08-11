@@ -13,7 +13,6 @@ type Props = {
 
 export const Process2 = (props: Props) => {
     const billingData = props.billingData;
-    const setBillingData = props.setBillingData;
     const stepperStep = props.stepperStep;
     const setStepperStep = props.setStepperStep;
 
