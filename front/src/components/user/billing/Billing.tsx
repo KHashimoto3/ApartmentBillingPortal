@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
-import { Box, Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Container, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
 

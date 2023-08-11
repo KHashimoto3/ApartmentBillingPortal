@@ -17,7 +17,6 @@ type Props = {
 
 export const Process = (props: Props) => {
     const setStep = props.setStep;
-    const userId = props.userId;
     const userName = props.userName;
 
     const [stepperStep, setStepperStep] = useState<number>(0);
