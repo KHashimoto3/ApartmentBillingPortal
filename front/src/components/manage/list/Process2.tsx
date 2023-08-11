@@ -61,7 +61,7 @@ export const Process2 = (props: Props) => {
                         variant="contained"
                         onClick={() => setStepperStep(stepperStep + 1)}
                     >
-                        次へ
+                        完了
                     </Button>
                     <Button
                         size="small"
