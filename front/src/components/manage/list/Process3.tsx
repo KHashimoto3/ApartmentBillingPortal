@@ -24,7 +24,7 @@ export const Process3 = (props: Props) => {
             <Stack spacing={1} sx={{marginTop: "20px"}}>
                 <Typography variant="h5">＜対象者＞</Typography>
                 <Typography variant="h6">氏名：{userName}</Typography>
-                <Typography variant="h6">集金額：￥{billingData.finalPrice}</Typography>
+                <Typography variant="h6">集金額：￥{billingData.paidPrice}</Typography>
                 <Typography variant="h6">繰越額：￥{billingData.carryOverPrice}</Typography>
             </Stack>
 
