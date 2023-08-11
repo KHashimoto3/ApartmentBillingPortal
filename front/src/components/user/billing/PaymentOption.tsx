@@ -3,18 +3,7 @@ import { useEffect, useState } from "react";
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-interface BillingData {
-    billingId: string;
-    userId: string;
-    useAmount: number;
-    price: number;
-    beforeCarryOver: number;
-    carryOverType: string;
-    carryOverPrice: number;
-    finalPrice: number;
-    dateId: number;
-    paid: number;
-};
+import { BillingData } from "../../types/BillingData";
 
 type Props = {
     billingData: BillingData,
