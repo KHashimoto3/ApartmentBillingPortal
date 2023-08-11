@@ -22,7 +22,7 @@ export const Process2 = (props: Props) => {
     //今月繰り越す金額
     const [chargePrice, setChargePrice] = useState<number>(0);
     
-    //繰越金額の再計算
+    //お釣りの再計算
     useEffect(() => {
         setChargePrice(keepPrice - billingData.finalPrice)
     }, [keepPrice]);
@@ -33,7 +33,18 @@ export const Process2 = (props: Props) => {
                     <Typography variant="h6">預かり金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setKeepPrice(Number(event.target.value))} value={keepPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
-                    <Typography variant="h5">お釣り ￥{chargePrice}</Typography>
+                    
+                    {(() => {
+                        if (chargePrice < 0) {
+                            return (
+                                <Typography variant="h5" sx={{color: "error.main"}}>不足 ￥{chargePrice}</Typography>
+                            )
+                        } else {
+                            return (
+                                <Typography variant="h5">お釣り ￥{chargePrice}</Typography>
+                            )
+                        }
+                    })()}
 
                     <Button
                         size="small"
