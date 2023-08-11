@@ -16,57 +16,19 @@ type Props = {
 
 
 export const Process = (props: Props) => {
+    const step = props.step;
     const setStep = props.setStep;
     const userName = props.userName;
 
     const [stepperStep, setStepperStep] = useState<number>(0);
-    const maxSteps = 3;
-    const theme = useTheme();
 
     //請求データを格納する
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, finalPrice: 3000, dateId: 0, paid: 0});
 
     const [tabValue, setTabValue] = useState<string>("0");
 
-    const Step = () => {
-      return (
-        <MobileStepper
-        variant="text"
-        steps={maxSteps}
-        position="static"
-        activeStep={stepperStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={() => setStepperStep(stepperStep + 1)}
-            disabled={stepperStep === maxSteps - 1}
-          >
-            次へ
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={() => setStepperStep(stepperStep - 1)} disabled={stepperStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            戻る
-          </Button>
-        }
-      />
-      )
-    }
-
     return (
         <Container sx={{width: "90%", height: "100%"}}>
-            <button onClick={() =>  setStep(0)}>選択に戻る</button>
-
             <Container sx={{width: "80%"}}>
             <Tabs
                 value={tabValue}
@@ -100,24 +62,15 @@ export const Process = (props: Props) => {
                 } else if (tabValue === "1") {
                   if (stepperStep === 0) {
                     return (
-                      <>
-                         <Process1 billingData={billingData} setBillingData={setBillingData} />
-                        <Step />
-                      </>
+                         <Process1 billingData={billingData} setBillingData={setBillingData} step={step} setStep={setStep} stepperStep={stepperStep} setStepperStep={setStepperStep} />
                     )
                   } else if (stepperStep === 1) {
                     return (
-                      <>
                         <Process2 billingData={billingData} setBillingData={setBillingData} />
-                         <Step />
-                      </>
                     )
                   } else if (stepperStep === 2) {
                     return (
-                      <>
                         <Process3 billingData={billingData} setBillingData={setBillingData} />
-                        <Step />
-                      </>
                     )
                   } else {
                     return (
