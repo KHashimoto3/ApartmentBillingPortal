@@ -17,8 +17,8 @@ export const Process3 = (props: Props) => {
     const userName = props.userName;
 
     return (
-        <Container sx={{width: "90%", height: "100%", textAlign: "center"}}>
-            <CheckCircleOutlineIcon sx={{width: "150px", height: "auto", color: "success.main"}} />
+        <Container sx={{width: "100%", height: "100%", textAlign: "center", overflowY: "scroll"}}>
+            <CheckCircleOutlineIcon sx={{width: "130px", height: "auto", color: "success.main"}} />
             <Typography variant="h3">集金完了</Typography>
 
             <Stack spacing={1} sx={{marginTop: "20px"}}>

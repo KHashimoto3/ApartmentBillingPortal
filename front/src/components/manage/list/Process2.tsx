@@ -28,7 +28,7 @@ export const Process2 = (props: Props) => {
     }, [keepPrice]);
 
     return (
-        <>
+        <Container sx={{width: "100%", height: "90%", overflowY: "scroll"}}>
             <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
                 <Container sx={{width: "80%", height: "120px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
@@ -71,7 +71,7 @@ export const Process2 = (props: Props) => {
                     </Button>
                 </Stack>
             </Container>
-        </>
+        </Container>
             
     );
 }

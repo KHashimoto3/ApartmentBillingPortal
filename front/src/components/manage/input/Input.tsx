@@ -8,14 +8,17 @@ interface BillInputList {
     useAmount: number;
     price: number;
     beforeCarryOver: number;
-    finalPrice: number;
 }
 
 export const Input = () => {
     const listData: BillInputList[] = [
-        {no: 1, name: "井上 太郎", useAmount: 0, price: 0, beforeCarryOver: 2000, finalPrice: 0},
-        {no: 2, name: "鈴木 太郎", useAmount: 0, price: 0, beforeCarryOver: 0, finalPrice: 0},
-        {no: 3, name: "田中 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500, finalPrice: 0},
+        {no: 1, name: "井上 太郎", useAmount: 0, price: 0, beforeCarryOver: 2000},
+        {no: 2, name: "鈴木 太郎", useAmount: 0, price: 0, beforeCarryOver: 0},
+        {no: 3, name: "山田 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+        {no: 4, name: "高橋 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+        {no: 5, name: "福島 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+        {no: 6, name: "宮城 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
+        {no: 7, name: "大阪 太郎", useAmount: 0, price: 0, beforeCarryOver: 3500},
     ];
 
     return (
@@ -34,6 +37,7 @@ export const Input = () => {
                     </Button>
                 </Grid>
             </Grid>
+            <Container sx={{width: "100%", height: "90%", overflowY: "scroll"}}>
             <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500}} aria-label="simple table">
           <TableHead>
@@ -63,12 +67,13 @@ export const Input = () => {
                   ￥<input type="text" size={5} value={data.price} />
                 </TableCell>
                 <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver}</TableCell>
-                <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.finalPrice}</TableCell>
+                <TableCell sx={{ minWidth: 70 }} component="th" scope="row" align="center">￥{data.beforeCarryOver + data.price}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      </Container>
         </Container>
     )
 }
