@@ -66,7 +66,7 @@ export const Process = (props: Props) => {
                     )
                   } else if (stepperStep === 1) {
                     return (
-                        <Process2 billingData={billingData} setBillingData={setBillingData} />
+                        <Process2 billingData={billingData} setBillingData={setBillingData} stepperStep={stepperStep} setStepperStep={setStepperStep} />
                     )
                   } else if (stepperStep === 2) {
                     return (
