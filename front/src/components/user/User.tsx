@@ -18,7 +18,7 @@ export const User = () => {
 
     return (
         <div className='AppArea'>
-             <AppBar position="static">
+             <AppBar position="static" sx={{background: "#000"}}>
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -29,7 +29,7 @@ export const User = () => {
                     >
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        電気代集金システム（支払い者用）
+                        DomE Bill（支払い者用）
                     </Typography>
                     { /*ログイン状態に応じてボタンを切り替える*/ }
                     {loginFlag? (
