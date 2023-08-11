@@ -45,15 +45,15 @@ export const Process = (props: Props) => {
             {(() => {
                 if (stepperStep === 0) {
                     return (
-                        <Process1 />
+                        <Process1 billingData={billingData} setBillingData={setBillingData} />
                     )
                 } else if (stepperStep === 1) {
                     return (
-                        <Process2 />
+                        <Process2 billingData={billingData} setBillingData={setBillingData} />
                     )
                 } else if (stepperStep === 2) {
                     return (
-                        <Process3 />
+                        <Process3 billingData={billingData} setBillingData={setBillingData} />
                     )
                 } else {
                     return (
