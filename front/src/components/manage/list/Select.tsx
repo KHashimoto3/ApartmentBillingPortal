@@ -1,4 +1,4 @@
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material"
 import CheckIcon from '@mui/icons-material/Check';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
@@ -32,6 +32,7 @@ export const Select = (props: Props) => {
 
     return (
         <Container sx={{width: "90%", height: "100%", marginTop: "30px"}}>
+          <Typography variant="h4">請求一覧</Typography>
             <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500}} aria-label="simple table">
           <TableHead>
