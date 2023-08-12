@@ -17,15 +17,15 @@ var err error
 
 // 支払い
 type billing struct {
-	BillingId       string `json:"billing_id"`
-	UserId          string `json:"user_id"`
-	UseAmount       int    `json:"use_amount"`
+	BillingId       string `json:"billingId"`
+	UserId          string `json:"userId"`
+	UseAmount       int    `json:"useAmount"`
 	Price           int    `json:"price"`
-	BeforeCarryOver int    `json:"before_carry_over"`
-	CarryOverType   string `json:"carry_over_type"`
-	CarryOverPrice  int    `json:"carry_over_price"`
-	FinalPrice      int    `json:"final_price"`
-	DateId          int    `json:"date_id"`
+	BeforeCarryOver int    `json:"beforeCarryOver"`
+	CarryOverType   string `json:"carryOverType"`
+	CarryOverPrice  int    `json:"carryOverPrice"`
+	DateId          int    `json:"dateId"`
+	PaidPrice       int    `json:"paidPrice"`
 	Paid            int    `json:"paid"`
 }
 
@@ -43,7 +43,7 @@ func getBillingList(c *gin.Context) {
 	var bills []billing
 	for rows.Next() {
 		var bill billing
-		if err := rows.Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.FinalPrice, &bill.DateId, &bill.Paid); err != nil {
+		if err := rows.Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.DateId, &bill.PaidPrice, &bill.Paid); err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
@@ -57,7 +57,7 @@ func getBillingRecord(c *gin.Context) {
 	userId := c.Query("userId")
 	var bill billing
 	err := db.QueryRow("SELECT * FROM billing WHERE user_id = ?", userId).
-		Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.FinalPrice, &bill.DateId, &bill.Paid)
+		Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.DateId, &bill.PaidPrice, &bill.Paid)
 	if errors.Is(err, sql.ErrNoRows) {
 		//レコードがなかったときのエラー
 		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
@@ -72,6 +72,21 @@ func getBillingRecord(c *gin.Context) {
 }
 
 func main() {
+	router := gin.Default()
+
+	// CORS設定
+	router.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000") // ReactアプリのURLに置き換える
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
+
 	//環境設定ファイルの読み込み
 	err = godotenv.Load("config.env")
 	if err != nil {
@@ -94,7 +109,6 @@ func main() {
 	}
 	defer db.Close()
 
-	router := gin.Default()
 	router.GET("/", hello)
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/get-bill-rec", getBillingRecord)

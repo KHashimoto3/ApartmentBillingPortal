@@ -20,12 +20,53 @@ export const NextBilling = () => {
 
     const [tabValue, setTabValue] = useState<string>("0");
 
+    const setFailedData = () => {
+        const data: BillingData = { billingId: 'noData',
+                userId: 'noData',
+                useAmount: 0,
+                price: 0,
+                beforeCarryOver: 0,
+                carryOverType: 'no',
+                carryOverPrice: 0,
+                dateId: 0,
+                paidPrice: 0,
+                paid: 0};
+        setBillingData(data);
+    }
+
+    //表示中の人の請求データを取得して表示する
+    const getBillingData = async (userId: string) => {
+        const url = "http://localhost:8080/get-bill-rec?userId=" + userId;
+        try {
+            const response = await fetch(url, {method:'GET' ,mode: "cors", headers: {
+                'Content-Type': 'application/json'
+            }});
+            if (response.ok) {
+                const data: BillingData = await response.json();
+                console.log(data);
+                setBillingData(data);
+                console.log("データ："+JSON.stringify(billingData));
+            } else {
+                const errorData = await response.json();
+                alert("エラー：" + errorData.error);
+                setFailedData();
+            }
+        } catch (error) {
+            alert("エラー：データの取得に失敗しました。");
+            setFailedData();
+        }
+    }
+
+    //APIから請求データを取得する
+    useEffect(() => {
+        getBillingData("test1");
+    }, []);
 
     //請求額を設定する
-    useEffect(() => {
+    /*useEffect(() => {
         const billingDataSrc: BillingData = {billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, dateId: 0, paidPrice: 0, paid: 0};
         setBillingData(billingDataSrc);
-    }, []);
+    }, []);*/
 
     const userTabTheme = createTheme({
         palette: {
