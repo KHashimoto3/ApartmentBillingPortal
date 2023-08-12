@@ -113,7 +113,6 @@ export const NextBilling = () => {
                     )
                 } else if (tabValue === "1") {
                     return (
-                        <ThemeProvider theme={userPrimaryTheme}>
                             <Container sx={{width: "90%", textAlign: "center", marginTop: "20px"}}>
                             <Typography variant='h5'>繰越のタイプを選択</Typography>
                         <FormControl>
@@ -131,7 +130,6 @@ export const NextBilling = () => {
                         <PaymentOption billingData={billingData} carryOverType={value} />
                         </FormControl>
                         </Container>
-                        </ThemeProvider>
                         
                     )
                 } else {
