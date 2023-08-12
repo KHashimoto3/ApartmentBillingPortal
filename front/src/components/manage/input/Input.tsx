@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Container, Grid, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 
 import { BillingData } from "../../types/BillingData";
 import { useState } from "react";
@@ -12,6 +12,9 @@ interface BillInputList {
 }
 
 export const Input = () => {
+  const [yearValue, setYearValue] = useState<number | string>("");
+  const [manthValue, setManthValue] = useState<number | string>("");
+
     const [listData, setListData] = useState<BillInputList[]>([
       {no: 1, name: "井上 太郎", useAmount: 0, price: 0, beforeCarryOver: 2000},
       {no: 2, name: "鈴木 太郎", useAmount: 0, price: 0, beforeCarryOver: 0},
@@ -43,10 +46,60 @@ export const Input = () => {
     return (
         <Container sx={{width: "90%", height: "100%", marginTop: "30px"}}>
             <Grid container spacing={2}>
-                <Grid item xs={10}>
+                <Grid item xs={4}>
                     <Typography variant="h4">請求入力</Typography>
                 </Grid>
                 <Grid item xs={2}>
+                <Select
+                                        value={yearValue}
+                                        onChange={(event) => setYearValue(Number(event.target.value))}
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        size="small"
+                                    >
+                                        <MenuItem value="">
+                                            <em>年を選択</em>
+                                        </MenuItem>
+                                        <MenuItem value={2022}>2022年</MenuItem>
+                                        <MenuItem value={2023}>2023年</MenuItem>
+                                    </Select>
+                </Grid>
+                <Grid item xs={3}>
+                <Select
+                                        value={manthValue}
+                                        onChange={(event) => setManthValue(Number(event.target.value))}
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        size="small"
+                                    >
+                                        <MenuItem value="">
+                                            <em>月を選択</em>
+                                        </MenuItem>
+                                        <MenuItem value={1}>1月</MenuItem>
+                                        <MenuItem value={2}>2月</MenuItem>
+                                        <MenuItem value={3}>3月</MenuItem>
+                                        <MenuItem value={4}>4月</MenuItem>
+                                        <MenuItem value={5}>5月</MenuItem>
+                                        <MenuItem value={6}>6月</MenuItem>
+                                        <MenuItem value={7}>7月</MenuItem>
+                                        <MenuItem value={8}>8月</MenuItem>
+                                        <MenuItem value={9}>9月</MenuItem>
+                                        <MenuItem value={10}>10月</MenuItem>
+                                        <MenuItem value={11}>11月</MenuItem>
+                                        <MenuItem value={12}>12月</MenuItem>
+                                    </Select>
+                </Grid>
+                <Grid item xs={1.2}>
+                <Button
+                        size="medium"
+                        variant="outlined"
+                        onClick={() => alert("保存しました。")}
+                    >
+                        表示
+                    </Button>
+                </Grid>
+
+                <Grid item xs={1.2}>
                     <Button
                         size="medium"
                         variant="contained"

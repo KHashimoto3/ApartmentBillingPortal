@@ -164,12 +164,13 @@ export const NextBilling = () => {
                                         onChange={(event) => setYearValue(Number(event.target.value))}
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label' }}
+                                        size='small'
                                     >
                                         <MenuItem value="">
                                             <em>年を選択</em>
                                         </MenuItem>
-                                        <MenuItem value={2022}>2022</MenuItem>
-                                        <MenuItem value={2023}>2023</MenuItem>
+                                        <MenuItem value={2022}>2022年</MenuItem>
+                                        <MenuItem value={2023}>2023年</MenuItem>
                                     </Select>
                                 </Grid>
                                 <Grid item xs={3} sx={{textAlign: "center"}}>
@@ -178,22 +179,23 @@ export const NextBilling = () => {
                                         onChange={(event) => setManthValue(Number(event.target.value))}
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label' }}
+                                        size='small'
                                     >
                                         <MenuItem value="">
                                             <em>月を選択</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
-                                        <MenuItem value={5}>5</MenuItem>
-                                        <MenuItem value={6}>6</MenuItem>
-                                        <MenuItem value={7}>7</MenuItem>
-                                        <MenuItem value={8}>8</MenuItem>
-                                        <MenuItem value={9}>9</MenuItem>
-                                        <MenuItem value={10}>10</MenuItem>
-                                        <MenuItem value={11}>11</MenuItem>
-                                        <MenuItem value={12}>12</MenuItem>
+                                        <MenuItem value={1}>1月</MenuItem>
+                                        <MenuItem value={2}>2月</MenuItem>
+                                        <MenuItem value={3}>3月</MenuItem>
+                                        <MenuItem value={4}>4月</MenuItem>
+                                        <MenuItem value={5}>5月</MenuItem>
+                                        <MenuItem value={6}>6月</MenuItem>
+                                        <MenuItem value={7}>7月</MenuItem>
+                                        <MenuItem value={8}>8月</MenuItem>
+                                        <MenuItem value={9}>9月</MenuItem>
+                                        <MenuItem value={10}>10月</MenuItem>
+                                        <MenuItem value={11}>11月</MenuItem>
+                                        <MenuItem value={12}>12月</MenuItem>
                                     </Select>
                                 </Grid>
                                 <Grid item xs={5} sx={{textAlign: "center"}}>
@@ -201,7 +203,7 @@ export const NextBilling = () => {
                                     size="medium"
                                     variant="contained"
                                 >
-                                表示する
+                                表示
                              </Button>
                                 </Grid>
                                 </Grid>
