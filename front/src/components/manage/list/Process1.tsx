@@ -41,7 +41,7 @@ export const Process1 = (props: Props) => {
 
     return (
         <Container sx={{width: "100%", height: "90%", overflowY: "scroll"}}>
-            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+            <Paper elevation={3} sx={{width: "80%", margin: "20px auto 0 auto", background: "linear-gradient(156deg, rgba(255, 255, 255, 1), rgba(244, 244, 244, 1))"}} children={
                 <Container sx={{width: "80%", height: "150px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 {userName}</Typography>
@@ -56,7 +56,9 @@ export const Process1 = (props: Props) => {
                     <Typography variant="h6">集金金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
-                    <Typography variant="h5">繰越金額 ￥{carryOverPrice}</Typography>
+
+                    <Typography variant="h6">繰越金額</Typography>
+                    <Typography variant="h3">￥{carryOverPrice}</Typography>
 
                     <Button
                         size="small"

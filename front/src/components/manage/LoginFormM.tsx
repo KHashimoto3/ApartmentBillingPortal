@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 
 //フォームの処理
 import { useForm } from "react-hook-form";
+import { ThemeProvider, createTheme } from '@mui/material';
 
 type FormValues = {
     userId: string,
@@ -25,9 +26,19 @@ export const LoginFormM = () => {
         }
     });
 
+    const loginTheme = createTheme({
+        palette: {
+            mode: 'light',
+            primary: {
+                main: '#000'
+            }
+        }
+    })
+
     return (
         <Container maxWidth="sm">
             <form onSubmit={onSubmit}>
+            <ThemeProvider theme={loginTheme}>
             <Stack spacing={2}>
                 <br></br>
                 <h1>ログイン</h1>
@@ -42,6 +53,7 @@ export const LoginFormM = () => {
                 /><br />
                 <Button type='submit'>ログイン</Button>
             </Stack>
+            </ThemeProvider>
             </form>
             </Container>
     );

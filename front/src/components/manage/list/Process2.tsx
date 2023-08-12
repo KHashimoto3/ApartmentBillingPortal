@@ -29,7 +29,7 @@ export const Process2 = (props: Props) => {
 
     return (
         <Container sx={{width: "100%", height: "90%", overflowY: "scroll"}}>
-            <Paper elevation={3} sx={{width: "80%", margin: "0 auto"}} children={
+            <Paper elevation={3} sx={{width: "80%", margin: "20px auto 0 auto", background: "linear-gradient(156deg, rgba(255, 255, 255, 1), rgba(244, 244, 244, 1))"}} children={
                 <Container sx={{width: "80%", height: "120px"}}>
                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                         <Typography variant='h6'>8月12日 {userName}</Typography>
@@ -46,11 +46,17 @@ export const Process2 = (props: Props) => {
                     {(() => {
                         if (chargePrice < 0) {
                             return (
-                                <Typography variant="h5" sx={{color: "error.main"}}>不足 ￥{chargePrice}</Typography>
+                                <>
+                                    <Typography variant="h6" sx={{color: "error.main"}}>不足</Typography>
+                                    <Typography variant="h3" sx={{color: "error.main"}}>￥{chargePrice}</Typography>
+                                </>
                             )
                         } else {
                             return (
-                                <Typography variant="h5">お釣り ￥{chargePrice}</Typography>
+                                <>
+                                    <Typography variant="h6">お釣り</Typography>
+                                    <Typography variant="h3">￥{chargePrice}</Typography>
+                                </>
                             )
                         }
                     })()}

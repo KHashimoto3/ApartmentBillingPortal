@@ -10,13 +10,33 @@ import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 import { UserViewContents } from './UserViewContents';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 export const UserViewController = () => {
     const [navigationValue, setNavigationValue] = useState<number>(0);
 
+    const userNavTheme = createTheme({
+        palette: {
+            mode: 'light',
+            primary: {
+                main: '#26c988'
+            }
+        },
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "10px"
+                    }
+                }
+            }
+        }
+    })
+
     return (
         <div>
             <Container maxWidth="md" style={{height:"70vh"}}>
+                <ThemeProvider theme={userNavTheme}>
                 <UserViewContents contentsNo={navigationValue} />
                 <BottomNavigation
                     showLabels
@@ -29,6 +49,7 @@ export const UserViewController = () => {
                     <BottomNavigationAction label="請求一覧" icon={<CurrencyYenIcon />} />
                     <BottomNavigationAction label="請求日設定" icon={<FormatListBulletedIcon />} />
                 </BottomNavigation>
+                </ThemeProvider>
             </Container>
         </div>
     );
