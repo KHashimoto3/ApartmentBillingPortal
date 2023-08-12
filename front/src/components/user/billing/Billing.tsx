@@ -14,11 +14,16 @@ import { Container, Grid, Stack, Tab, Tabs, ThemeProvider, Typography, createThe
 
 import { BillingData } from '../../types/BillingData';
 
+import PublicIcon from '@mui/icons-material/Public';
+
 export const NextBilling = () => {
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, dateId: 0, paidPrice: 0, paid: 0});
     const [value, setValue] = useState<string>('no');
 
     const [tabValue, setTabValue] = useState<string>("0");
+
+    const comparePrice = -1000;
+    const compareCo2 = -30;
 
     const setFailedData = () => {
         const data: BillingData = { billingId: 'noData',
@@ -77,15 +82,6 @@ export const NextBilling = () => {
         }
     })
 
-    const userPrimaryTheme= createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#26c988'
-            }
-        }
-    })
-
     return (
         <div className="billingContentsArea">
             <ThemeProvider theme={userTabTheme}>
@@ -122,7 +118,7 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>使用量</Typography>
-                                        <Typography variant='h4'>{billingData.useAmount} KW</Typography>
+                                        <Typography variant='h4'>{billingData.useAmount} kWh</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
@@ -134,7 +130,7 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>請求額</Typography>
-                                        <Typography variant='h4'>￥{billingData.price}円</Typography>
+                                        <Typography variant='h4'>￥{billingData.price}</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
@@ -143,10 +139,16 @@ export const NextBilling = () => {
                                         <Typography variant='h4'>￥{billingData.carryOverPrice}</Typography>
                                     </Stack>
                                 </Grid>
-                                <Grid item xs={12} sx={{textAlign: "center"}}>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                                        <Typography variant='body1'>先月分との請求額比較</Typography>
-                                        <Typography variant='h4'>-￥1,000</Typography>
+                                        <Typography variant='body1' sx={{fontWeight: "bold"}}>先月 請求額比較</Typography>
+                                        {comparePrice <= 0 ? <Typography variant='h4' sx={{color: "success.main"}}>￥{comparePrice}</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>￥{comparePrice}</Typography>}
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1' sx={{fontWeight: "bold"}}>先月 CO2削減量</Typography>
+                                        {compareCo2 <= 0 ? <Typography variant='h4' sx={{color: "success.main"}}><PublicIcon fontSize='large' />{compareCo2}kg</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>{compareCo2}kg</Typography>}
                                     </Stack>
                                 </Grid>
                             </Grid>
@@ -164,7 +166,7 @@ export const NextBilling = () => {
                     name="radio-buttons-group"
                     onChange={(e:  React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                             >
-                            <FormControlLabel value="no" control={<Radio />} label="設定なし" />
+                            <FormControlLabel value="no" control={<Radio />} label="繰越なし" />
                              <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
                             <FormControlLabel value="all" control={<Radio />} label="全額繰越" />
                         </RadioGroup>
