@@ -76,7 +76,7 @@ export const NextBilling = () => {
             {(() => {
                 if (tabValue === "0") {
                     return (
-                        <Container sx={{width: "80%"}}>
+                        <Container sx={{width: "80%", marginBottom: "50px"}}>
                             <Grid container spacing={1}>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
@@ -113,7 +113,7 @@ export const NextBilling = () => {
                     )
                 } else if (tabValue === "1") {
                     return (
-                            <Container sx={{width: "90%", textAlign: "center", marginTop: "20px"}}>
+                            <Container sx={{width: "90%", textAlign: "center", marginTop: "20px", marginBottom: "50px"}}>
                             <Typography variant='h5'>繰越のタイプを選択</Typography>
                         <FormControl>
                             <RadioGroup
@@ -130,7 +130,6 @@ export const NextBilling = () => {
                         <PaymentOption billingData={billingData} carryOverType={value} />
                         </FormControl>
                         </Container>
-                        
                     )
                 } else {
                     return (
