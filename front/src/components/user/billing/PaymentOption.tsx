@@ -23,6 +23,11 @@ export const PaymentOption = (props: Props) => {
 
     useEffect(() => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
+        if (paymentPrice === 0) {
+            setSaveDisabled(true);
+        } else {
+            setSaveDisabled(false);
+        }
     }, [paymentPrice]);
 
     //既に設定されているオプションの場合、「変更を保存」ボタンは無効にする
