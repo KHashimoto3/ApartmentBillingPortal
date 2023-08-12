@@ -1,9 +1,11 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography } from "@mui/material";
+import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import { BillingData } from "../../types/BillingData";
+
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 type Props = {
     billingData: BillingData,
@@ -97,7 +99,10 @@ export const PaymentOption = (props: Props) => {
           {"繰越設定完了"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+        <Container sx={{width: "90%", textAlign: "center"}}>
+        <CheckCircleOutlineIcon sx={{width: "130px", height: "auto", color: "success.main", textAlign: "center"}} />
+        </Container>
+          <DialogContentText id="alert-dialog-description" >
             一部繰越の設定が完了しました。
           </DialogContentText>
         </DialogContent>
