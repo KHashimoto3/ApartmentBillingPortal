@@ -39,9 +39,9 @@ export const PaymentOption = (props: Props) => {
         }
     }, [carryOverType]);
 
-    //既に設定されている繰越額と同じ金額の場合、「変更を保存」ボタンは無効にする
+    //既に設定されている繰越額と同じ金額 または繰越額が0の場合、「変更を保存」ボタンは無効にする
     useEffect(() => {
-        if (billingData.carryOverPrice === carryOverPrice) {
+        if ((billingData.carryOverPrice === carryOverPrice) || (carryOverPrice <= 0)) {
             setSaveDisabled(true);
         } else {
             setSaveDisabled(false);
