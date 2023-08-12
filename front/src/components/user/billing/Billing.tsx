@@ -14,6 +14,8 @@ import { Container, Grid, Stack, Tab, Tabs, ThemeProvider, Typography, createThe
 
 import { BillingData } from '../../types/BillingData';
 
+import PublicIcon from '@mui/icons-material/Public';
+
 export const NextBilling = () => {
     const [billingData, setBillingData] = useState<BillingData>({billingId: "test01", userId: "kait", useAmount: 350, price: 3000, beforeCarryOver: 0, carryOverType: "no", carryOverPrice: 0, dateId: 0, paidPrice: 0, paid: 0});
     const [value, setValue] = useState<string>('no');
@@ -139,14 +141,14 @@ export const NextBilling = () => {
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                                        <Typography variant='body1'>先月分との請求額比較</Typography>
+                                        <Typography variant='body1' sx={{fontWeight: "bold"}}>先月 請求額比較</Typography>
                                         {comparePrice <= 0 ? <Typography variant='h4' sx={{color: "success.main"}}>￥{comparePrice}</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>￥{comparePrice}</Typography>}
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
-                                        <Typography variant='body1'>先月とのCO2削減量</Typography>
-                                        {compareCo2 <= 0 ? <Typography variant='h4' sx={{color: "success.main"}}>{compareCo2}kg</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>{compareCo2}kg</Typography>}
+                                        <Typography variant='body1' sx={{fontWeight: "bold"}}>先月 CO2削減量</Typography>
+                                        {compareCo2 <= 0 ? <Typography variant='h4' sx={{color: "success.main"}}><PublicIcon fontSize='large' />{compareCo2}kg</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>{compareCo2}kg</Typography>}
                                     </Stack>
                                 </Grid>
                             </Grid>
