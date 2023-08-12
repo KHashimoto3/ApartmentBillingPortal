@@ -17,15 +17,15 @@ var err error
 
 // 支払い
 type billing struct {
-	BillingId       string `json:"billing_id"`
-	UserId          string `json:"user_id"`
-	UseAmount       int    `json:"use_amount"`
+	BillingId       string `json:"billingId"`
+	UserId          string `json:"userId"`
+	UseAmount       int    `json:"useAmount"`
 	Price           int    `json:"price"`
-	BeforeCarryOver int    `json:"before_carry_over"`
-	CarryOverType   string `json:"carry_over_type"`
-	CarryOverPrice  int    `json:"carry_over_price"`
-	DateId          int    `json:"date_id"`
-	PaidPrice       int    `json:"paid_price"`
+	BeforeCarryOver int    `json:"beforeCarryOver"`
+	CarryOverType   string `json:"carryOverType"`
+	CarryOverPrice  int    `json:"carryOverPrice"`
+	DateId          int    `json:"dateId"`
+	PaidPrice       int    `json:"paidPrice"`
 	Paid            int    `json:"paid"`
 }
 

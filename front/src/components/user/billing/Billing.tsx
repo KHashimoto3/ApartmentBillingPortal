@@ -45,6 +45,7 @@ export const NextBilling = () => {
                 const data: BillingData = await response.json();
                 console.log(data);
                 setBillingData(data);
+                console.log("データ："+JSON.stringify(billingData));
             } else {
                 const errorData = await response.json();
                 alert("エラー：" + errorData.error);
