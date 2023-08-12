@@ -130,7 +130,7 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>請求額</Typography>
-                                        <Typography variant='h4'>￥{billingData.price}円</Typography>
+                                        <Typography variant='h4'>￥{billingData.price}</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
