@@ -85,8 +85,23 @@ export const PaymentOption = (props: Props) => {
                     <Typography variant="h6">今月支払う金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
-                    <Typography variant="h6">繰越金額</Typography>
-                    <Typography variant="h3">￥{carryOverPrice}</Typography>
+                    {(() => {
+                        if (carryOverPrice < 0) {
+                            return (
+                                <>
+                                    <Typography variant="h6" sx={{color: "error.main"}}>繰越金額（不正です）</Typography>
+                                    <Typography variant="h3" sx={{color: "error.main"}}>￥{carryOverPrice}</Typography>
+                                </>
+                            )
+                        } else {
+                            return (
+                                <>
+                                    <Typography variant="h6">繰越金額</Typography>
+                                    <Typography variant="h3">￥{carryOverPrice}</Typography>
+                                </>
+                            )
+                        }
+                    })()}
                     <Button
                         size="small"
                         variant="contained"
