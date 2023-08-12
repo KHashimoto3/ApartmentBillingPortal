@@ -56,7 +56,9 @@ export const Process1 = (props: Props) => {
                     <Typography variant="h6">集金金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
-                    <Typography variant="h5">繰越金額 ￥{carryOverPrice}</Typography>
+
+                    <Typography variant="h6">繰越金額</Typography>
+                    <Typography variant="h3">￥{carryOverPrice}</Typography>
 
                     <Button
                         size="small"

@@ -46,11 +46,17 @@ export const Process2 = (props: Props) => {
                     {(() => {
                         if (chargePrice < 0) {
                             return (
-                                <Typography variant="h5" sx={{color: "error.main"}}>不足 ￥{chargePrice}</Typography>
+                                <>
+                                    <Typography variant="h6" sx={{color: "error.main"}}>不足</Typography>
+                                    <Typography variant="h3" sx={{color: "error.main"}}>￥{chargePrice}</Typography>
+                                </>
                             )
                         } else {
                             return (
-                                <Typography variant="h5">お釣り ￥{chargePrice}</Typography>
+                                <>
+                                    <Typography variant="h6">お釣り</Typography>
+                                    <Typography variant="h3">￥{chargePrice}</Typography>
+                                </>
                             )
                         }
                     })()}
