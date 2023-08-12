@@ -23,6 +23,11 @@ export const PaymentOption = (props: Props) => {
 
     useEffect(() => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
+        if (paymentPrice === 0) {
+            setSaveDisabled(true);
+        } else {
+            setSaveDisabled(false);
+        }
     }, [paymentPrice]);
 
     //既に設定されているオプションの場合、「変更を保存」ボタンは無効にする
@@ -34,9 +39,9 @@ export const PaymentOption = (props: Props) => {
         }
     }, [carryOverType]);
 
-    //既に設定されている繰越額と同じ金額の場合、「変更を保存」ボタンは無効にする
+    //既に設定されている繰越額と同じ金額 または繰越額が0の場合、「変更を保存」ボタンは無効にする
     useEffect(() => {
-        if (billingData.carryOverPrice === carryOverPrice) {
+        if ((billingData.carryOverPrice === carryOverPrice) || (carryOverPrice <= 0)) {
             setSaveDisabled(true);
         } else {
             setSaveDisabled(false);
@@ -80,8 +85,23 @@ export const PaymentOption = (props: Props) => {
                     <Typography variant="h6">今月支払う金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
-                    <Typography variant="h6">繰越金額</Typography>
-                    <Typography variant="h3">￥{carryOverPrice}</Typography>
+                    {(() => {
+                        if (carryOverPrice < 0) {
+                            return (
+                                <>
+                                    <Typography variant="h6" sx={{color: "error.main"}}>繰越金額（不正です）</Typography>
+                                    <Typography variant="h3" sx={{color: "error.main"}}>￥{carryOverPrice}</Typography>
+                                </>
+                            )
+                        } else {
+                            return (
+                                <>
+                                    <Typography variant="h6">繰越金額</Typography>
+                                    <Typography variant="h3">￥{carryOverPrice}</Typography>
+                                </>
+                            )
+                        }
+                    })()}
                     <Button
                         size="small"
                         variant="contained"

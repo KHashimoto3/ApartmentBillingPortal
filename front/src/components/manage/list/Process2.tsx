@@ -21,10 +21,17 @@ export const Process2 = (props: Props) => {
     const [keepPrice, setKeepPrice] = useState<number>(0);
     //今月繰り越す金額
     const [chargePrice, setChargePrice] = useState<number>(0);
+
+    const [finishDisabled, setFinishDisabled] = useState<boolean>(false);
     
     //お釣りの再計算
     useEffect(() => {
         setChargePrice(keepPrice - billingData.paidPrice);
+        if ((keepPrice - billingData.paidPrice) < 0 ) {
+            setFinishDisabled(true);
+        } else {
+            setFinishDisabled(false);
+        }
     }, [keepPrice]);
 
     return (
@@ -65,6 +72,7 @@ export const Process2 = (props: Props) => {
                         size="small"
                         variant="contained"
                         onClick={() => setStepperStep(stepperStep + 1)}
+                        disabled={finishDisabled}
                     >
                         完了
                     </Button>
