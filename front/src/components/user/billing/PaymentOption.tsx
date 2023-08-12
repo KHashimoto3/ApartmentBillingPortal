@@ -59,7 +59,7 @@ export const PaymentOption = (props: Props) => {
     if (carryOverType === "no") {
         return (
             <div>
-                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>繰越設定は行わず、全額を支払います。</Typography>
+                <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>繰越設定は行わず、全額を支払います。</Typography>
                 <Stack spacing={2}>
                 <Button
                     size="small"
@@ -75,8 +75,8 @@ export const PaymentOption = (props: Props) => {
     } else if (carryOverType === "part") {
         return (
             <div>
-                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>一部を繰越し、今月の支払額を設定します。</Typography>
-                <Stack spacing={1} sx={{marginTop: "20px"}}>
+                <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>一部を繰越し、今月の支払額を設定します。</Typography>
+                <Stack spacing={1}>
                     <Typography variant="h6">今月支払う金額を入力</Typography>
                     <TextField id="user-id" onChange={(event) => setPaymentPrice(Number(event.target.value))} value={paymentPrice} variant="outlined" />
                     <Typography variant="h3"><ArrowDownwardIcon fontSize="large" /></Typography>
@@ -96,7 +96,7 @@ export const PaymentOption = (props: Props) => {
     } else if (carryOverType === "all") {
         return (
             <div>
-                <Typography variant="body1" color={"primary"} fontWeight={"bold"}>全額を繰越し、今月は支払いを行いません。</Typography>
+                <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>全額を繰越し、今月は支払いを行いません。</Typography>
                 <Stack spacing={2}>
                 <Button
                     size="small"
