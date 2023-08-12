@@ -28,8 +28,8 @@ export const NextBilling = () => {
                 beforeCarryOver: 0,
                 carryOverType: 'no',
                 carryOverPrice: 0,
-                finalPrice: 0,
                 dateId: 0,
+                paidPrice: 0,
                 paid: 0};
         setBillingData(data);
     }
@@ -43,6 +43,7 @@ export const NextBilling = () => {
             }});
             if (response.ok) {
                 const data: BillingData = await response.json();
+                console.log(data);
                 setBillingData(data);
             } else {
                 const errorData = await response.json();
