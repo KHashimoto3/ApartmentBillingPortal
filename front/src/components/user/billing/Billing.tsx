@@ -20,6 +20,9 @@ export const NextBilling = () => {
 
     const [tabValue, setTabValue] = useState<string>("0");
 
+    const comparePrice = -1000;
+    const compareCo2 = -30;
+
     const setFailedData = () => {
         const data: BillingData = { billingId: 'noData',
                 userId: 'noData',
@@ -134,10 +137,16 @@ export const NextBilling = () => {
                                         <Typography variant='h4'>￥{billingData.carryOverPrice}</Typography>
                                     </Stack>
                                 </Grid>
-                                <Grid item xs={12} sx={{textAlign: "center"}}>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>先月分との請求額比較</Typography>
-                                        <Typography variant='h4'>-￥1,000</Typography>
+                                        <Typography variant='h4'>￥{comparePrice}</Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={6} sx={{textAlign: "center"}}>
+                                    <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
+                                        <Typography variant='body1'>先月とのCO2削減量</Typography>
+                                        <Typography variant='h4'>{compareCo2}kg</Typography>
                                     </Stack>
                                 </Grid>
                             </Grid>
