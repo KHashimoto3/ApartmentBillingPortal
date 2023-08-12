@@ -77,15 +77,6 @@ export const NextBilling = () => {
         }
     })
 
-    const userPrimaryTheme= createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#26c988'
-            }
-        }
-    })
-
     return (
         <div className="billingContentsArea">
             <ThemeProvider theme={userTabTheme}>
