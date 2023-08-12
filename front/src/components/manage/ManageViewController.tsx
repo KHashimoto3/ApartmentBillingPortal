@@ -21,6 +21,16 @@ export const ManageViewController = () => {
             primary: {
                 main: '#fa7414'
             }
+        },
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "10px"
+                        
+                    }
+                }
+            }
         }
     })
 

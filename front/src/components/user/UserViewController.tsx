@@ -21,6 +21,15 @@ export const UserViewController = () => {
             primary: {
                 main: '#26c988'
             }
+        },
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "10px"
+                    }
+                }
+            }
         }
     })
 
