@@ -118,7 +118,7 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>使用量</Typography>
-                                        <Typography variant='h4'>{billingData.useAmount} KW</Typography>
+                                        <Typography variant='h4'>{billingData.useAmount} kWh</Typography>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
@@ -166,7 +166,7 @@ export const NextBilling = () => {
                     name="radio-buttons-group"
                     onChange={(e:  React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                             >
-                            <FormControlLabel value="no" control={<Radio />} label="設定なし" />
+                            <FormControlLabel value="no" control={<Radio />} label="繰越なし" />
                              <FormControlLabel value="part" control={<Radio />} label="一部繰越" />
                             <FormControlLabel value="all" control={<Radio />} label="全額繰越" />
                         </RadioGroup>
