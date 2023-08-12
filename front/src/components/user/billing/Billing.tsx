@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import "./Billing.scss";
 
 import { PaymentOption } from './PaymentOption';
-import { Container, Grid, Stack, Tab, Tabs, ThemeProvider, Typography, createTheme } from '@mui/material';
+import { Button, Container, FormHelperText, Grid, MenuItem, Select, Stack, Tab, Tabs, ThemeProvider, Typography, createTheme } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
 
@@ -24,6 +24,9 @@ export const NextBilling = () => {
 
     const comparePrice = -1000;
     const compareCo2 = -30;
+
+    const [yearValue, setYearValue] = useState<number | string>("");
+    const [manthValue, setManthValue] = useState<number | string>("");
 
     const setFailedData = () => {
         const data: BillingData = { billingId: 'noData',
@@ -152,6 +155,59 @@ export const NextBilling = () => {
                                     </Stack>
                                 </Grid>
                             </Grid>
+                            <Stack spacing={0.5} sx={{marginTop: "30px"}}>
+                                <Typography variant='h5'>表示する年・月を選択</Typography>
+                                <Grid container spacing={2}>
+                                <Grid item xs={4} sx={{textAlign: "center"}}>
+                                <Select
+                                        value={yearValue}
+                                        onChange={(event) => setYearValue(Number(event.target.value))}
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        size='small'
+                                    >
+                                        <MenuItem value="">
+                                            <em>年を選択</em>
+                                        </MenuItem>
+                                        <MenuItem value={2022}>2022年</MenuItem>
+                                        <MenuItem value={2023}>2023年</MenuItem>
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={3} sx={{textAlign: "center"}}>
+                                <Select
+                                        value={manthValue}
+                                        onChange={(event) => setManthValue(Number(event.target.value))}
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        size='small'
+                                    >
+                                        <MenuItem value="">
+                                            <em>月を選択</em>
+                                        </MenuItem>
+                                        <MenuItem value={1}>1月</MenuItem>
+                                        <MenuItem value={2}>2月</MenuItem>
+                                        <MenuItem value={3}>3月</MenuItem>
+                                        <MenuItem value={4}>4月</MenuItem>
+                                        <MenuItem value={5}>5月</MenuItem>
+                                        <MenuItem value={6}>6月</MenuItem>
+                                        <MenuItem value={7}>7月</MenuItem>
+                                        <MenuItem value={8}>8月</MenuItem>
+                                        <MenuItem value={9}>9月</MenuItem>
+                                        <MenuItem value={10}>10月</MenuItem>
+                                        <MenuItem value={11}>11月</MenuItem>
+                                        <MenuItem value={12}>12月</MenuItem>
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={5} sx={{textAlign: "center"}}>
+                                <Button
+                                    size="medium"
+                                    variant="contained"
+                                >
+                                表示
+                             </Button>
+                                </Grid>
+                                </Grid>
+                            </Stack>
                         </Container>
                     )
                 } else if (tabValue === "1") {
