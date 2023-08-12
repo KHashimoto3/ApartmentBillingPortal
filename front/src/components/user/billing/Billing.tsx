@@ -140,13 +140,13 @@ export const NextBilling = () => {
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>先月分との請求額比較</Typography>
-                                        <Typography variant='h4'>￥{comparePrice}</Typography>
+                                        {comparePrice < 0 ? <Typography variant='h4' sx={{color: "success.main"}}>￥{comparePrice}</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>￥{comparePrice}</Typography>}
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={6} sx={{textAlign: "center"}}>
                                     <Stack spacing={0.5} sx={{paddingTop: "20px", textAlign: "center"}}>
                                         <Typography variant='body1'>先月とのCO2削減量</Typography>
-                                        <Typography variant='h4'>{compareCo2}kg</Typography>
+                                        {compareCo2 < 0 ? <Typography variant='h4' sx={{color: "success.main"}}>{compareCo2}kg</Typography>: <Typography variant='h4' sx={{color: "error.main"}}>{compareCo2}kg</Typography>}
                                     </Stack>
                                 </Grid>
                             </Grid>
