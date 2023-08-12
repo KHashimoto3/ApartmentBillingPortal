@@ -1,4 +1,4 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -20,6 +20,13 @@ export const PaymentOption = (props: Props) => {
     const [carryOverPrice, setCarryOverPrice] = useState<number>(billingData.carryOverPrice);
 
     const [saveDisabled, setSaveDisabled] = useState<boolean>(false);
+
+    //完了ダイアログ
+    const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+
+    const dialogClose = () => {
+        setDialogOpen(false);
+    }
 
     useEffect(() => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
@@ -51,11 +58,11 @@ export const PaymentOption = (props: Props) => {
     //変更を保存ボタンが押された
     const saveCarryOver = (type: string) => {
         if (type === "no") {
-            alert("繰越は行わないことを設定しました。");
+            alert("繰越は行わない設定が完了しました。");
         } else if (type === "part") {
-            alert(carryOverPrice + "円繰越して、" + paymentPrice + "円、支払うことを設定しました。");
+            setDialogOpen(true);
         } else if (type === "all") {
-            alert("全額繰越を設定しました。");
+            alert("全額繰越の設定が完了しました。");
         } else {
             alert("対応していない支払いオプションを設定しようとしました！！");
         }
@@ -80,6 +87,26 @@ export const PaymentOption = (props: Props) => {
     } else if (carryOverType === "part") {
         return (
             <div>
+                <Dialog
+        open={dialogOpen}
+        onClose={dialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"繰越設定完了"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            一部繰越の設定が完了しました。
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={dialogClose} autoFocus variant="contained">
+            閉じる
+          </Button>
+        </DialogActions>
+      </Dialog>
                 <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>一部を繰越し、今月の支払額を設定します。</Typography>
                 <Stack spacing={1}>
                     <Typography variant="h6">今月支払う金額を入力</Typography>
