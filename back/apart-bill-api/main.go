@@ -17,7 +17,7 @@ var err error
 
 // 支払い
 type billing struct {
-	BillingId       string `json:"billingId"`
+	BillingId       int    `json:"billingId"`
 	UserId          string `json:"userId"`
 	UseAmount       int    `json:"useAmount"`
 	Price           int    `json:"price"`
@@ -71,6 +71,22 @@ func getBillingRecord(c *gin.Context) {
 	c.JSON(200, bill)
 }
 
+func updateBillingRecord(c *gin.Context) {
+	//受信した新しい支払いデータをbillに格納
+	var bill billing
+	if err := c.BindJSON(&bill); err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//データベースを更新
+	_, err := db.Exec("UPDATE billing SET carry_over_type = ?, carry_over_price = ? WHERE user_id = ?", bill.CarryOverType, bill.CarryOverPrice, bill.UserId)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+	}
+	//正常に更新できた場合の処理
+	c.JSON(200, gin.H{"status": "Updated"})
+}
+
 func main() {
 	router := gin.Default()
 
@@ -112,6 +128,7 @@ func main() {
 	router.GET("/", hello)
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/get-bill-rec", getBillingRecord)
+	router.POST("/update-bill-rec", updateBillingRecord)
 
 	router.Run(":8080")
 }
