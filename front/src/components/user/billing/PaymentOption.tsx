@@ -21,6 +21,26 @@ export const PaymentOption = (props: Props) => {
 
     const [saveDisabled, setSaveDisabled] = useState<boolean>(false);
 
+    //請求データを更新する関数
+    const updateBillingData = async (type: string, price: number) => {
+        const newBillingData: BillingData = {billingId: billingData.billingId, userId: billingData.userId, useAmount: billingData.useAmount, price: billingData.price, beforeCarryOver: billingData.beforeCarryOver, carryOverType: type, carryOverPrice: price, dateId: billingData.dateId, paidPrice: billingData.paidPrice, paid: billingData.paid};
+        //データを更新するAPIを叩く
+        const url = "http://localhost:8080/update-bill-rec";
+        try {
+            const response = await fetch(url, {method:'POST' ,mode: "cors", headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify(newBillingData)});
+            if (response.ok) {
+                console.log("設定が完了しました。");
+            } else {
+                const errorData = await response.json();
+                alert("エラー：" + errorData.error);
+            }
+        } catch (error) {
+            alert("エラー：設定に失敗しました。");
+        }
+    }
+
     useEffect(() => {
         setCarryOverPrice((billingData.price + billingData.beforeCarryOver) - paymentPrice)
         if (paymentPrice === 0) {
@@ -69,7 +89,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
-                    onClick={() => saveCarryOver("no")}
+                    onClick={() => updateBillingData("no", 0)}
                     disabled={saveDisabled}
                 >
                     設定を保存
@@ -105,7 +125,7 @@ export const PaymentOption = (props: Props) => {
                     <Button
                         size="small"
                         variant="contained"
-                        onClick={() => saveCarryOver("part")}
+                        onClick={() => updateBillingData("part", carryOverPrice)}
                         disabled={saveDisabled}
                     >
                         設定を保存
@@ -121,7 +141,7 @@ export const PaymentOption = (props: Props) => {
                 <Button
                     size="small"
                     variant="contained"
-                    onClick={() => saveCarryOver("all")}
+                    onClick={() => updateBillingData("all", (billingData.price + billingData.beforeCarryOver))}
                     disabled={saveDisabled}
                 >
                     設定を保存
