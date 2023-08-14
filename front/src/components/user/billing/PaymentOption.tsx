@@ -29,7 +29,7 @@ export const PaymentOption = (props: Props) => {
     const dialogClose = () => {
         setDialogOpen(false);
     }
-    
+
     //請求データを更新する関数
     const updateBillingData = async (type: string, price: number) => {
         const newBillingData: BillingData = {billingId: billingData.billingId, userId: billingData.userId, useAmount: billingData.useAmount, price: billingData.price, beforeCarryOver: billingData.beforeCarryOver, carryOverType: type, carryOverPrice: price, dateId: billingData.dateId, paidPrice: billingData.paidPrice, paid: billingData.paid};
@@ -40,7 +40,7 @@ export const PaymentOption = (props: Props) => {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(newBillingData)});
             if (response.ok) {
-                console.log("設定が完了しました。");
+                setDialogOpen(true);
             } else {
                 const errorData = await response.json();
                 alert("エラー：" + errorData.error);
@@ -77,22 +77,32 @@ export const PaymentOption = (props: Props) => {
         }
     }, [carryOverPrice]);
 
-    //変更を保存ボタンが押された
-    const saveCarryOver = (type: string) => {
-        if (type === "no") {
-            alert("繰越は行わない設定が完了しました。");
-        } else if (type === "part") {
-            setDialogOpen(true);
-        } else if (type === "all") {
-            alert("全額繰越の設定が完了しました。");
-        } else {
-            alert("対応していない支払いオプションを設定しようとしました！！");
-        }
-    };
-
     if (carryOverType === "no") {
         return (
             <div>
+                <Dialog
+        open={dialogOpen}
+        onClose={dialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"繰越設定完了"}
+        </DialogTitle>
+        <DialogContent>
+        <Container sx={{width: "90%", textAlign: "center"}}>
+        <CheckCircleOutlineIcon sx={{width: "130px", height: "auto", color: "success.main", textAlign: "center"}} />
+        </Container>
+          <DialogContentText id="alert-dialog-description" >
+            繰越設定が完了しました。
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={dialogClose} autoFocus variant="contained">
+            閉じる
+          </Button>
+        </DialogActions>
+      </Dialog>
                 <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>繰越設定は行わず、全額を支払います。</Typography>
                 <Stack spacing={2}>
                 <Button
@@ -123,7 +133,7 @@ export const PaymentOption = (props: Props) => {
         <CheckCircleOutlineIcon sx={{width: "130px", height: "auto", color: "success.main", textAlign: "center"}} />
         </Container>
           <DialogContentText id="alert-dialog-description" >
-            一部繰越の設定が完了しました。
+            繰越設定が完了しました。
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -168,6 +178,29 @@ export const PaymentOption = (props: Props) => {
     } else if (carryOverType === "all") {
         return (
             <div>
+                <Dialog
+        open={dialogOpen}
+        onClose={dialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"繰越設定完了"}
+        </DialogTitle>
+        <DialogContent>
+        <Container sx={{width: "90%", textAlign: "center"}}>
+        <CheckCircleOutlineIcon sx={{width: "130px", height: "auto", color: "success.main", textAlign: "center"}} />
+        </Container>
+          <DialogContentText id="alert-dialog-description" >
+            繰越設定が完了しました。
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={dialogClose} autoFocus variant="contained">
+            閉じる
+          </Button>
+        </DialogActions>
+      </Dialog>
                 <Typography variant="body1" sx={{marginBottom: "20px",color: "#000", background: "#ededed", fontWeight: "bold", textAlign: "left"}}>全額を繰越し、今月は支払いを行いません。</Typography>
                 <Stack spacing={2}>
                 <Button
