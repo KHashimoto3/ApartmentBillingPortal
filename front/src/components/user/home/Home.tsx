@@ -1,9 +1,9 @@
-import "./Home.scss";
+import { Container } from "@mui/material";
 
 export const Home = () => {
     return (
-        <div className="homeContentsArea">
+        <Container sx={{height: "100%"}}>
             <h1>ホーム</h1>
-        </div>
+        </Container>
     )
 }

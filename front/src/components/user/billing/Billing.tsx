@@ -7,8 +7,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-import "./Billing.scss";
-
 import { PaymentOption } from './PaymentOption';
 import { Button, Container, FormHelperText, Grid, MenuItem, Select, Stack, Tab, Tabs, ThemeProvider, Typography, createTheme } from '@mui/material';
 
@@ -86,7 +84,7 @@ export const NextBilling = () => {
     })
 
     return (
-        <div className="billingContentsArea">
+        <Container sx={{height: "100%", overflowY: "scroll"}}>
             <ThemeProvider theme={userTabTheme}>
             <Container sx={{width: "80%"}}>
             <Tabs
@@ -236,6 +234,6 @@ export const NextBilling = () => {
                     )
                 }
             })()}
-        </div>
+        </Container>
     )
 }
