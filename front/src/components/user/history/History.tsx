@@ -1,9 +1,9 @@
-import "./History.scss";
+import { Container } from "@mui/material";
 
 export const History = () => {
     return (
-        <div className="historyContentsArea">
-            <h1>History</h1>
-        </div>
+        <Container sx={{height: "100%"}}>
+            <h1>請求履歴</h1>
+        </Container>
     )
 }

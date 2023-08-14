@@ -11,13 +11,11 @@ import { UserViewController } from './UserViewController';
 
 import { LoginFlagContext } from '../providers/LoginFlagProvider';
 
-import './User.scss';
-
 export const User = () => {
     const {loginFlag, setLoginFlag} = useContext(LoginFlagContext);
 
     return (
-        <div className='AppArea'>
+        <div style={{width: "100%", height: "100%"}}>
              <AppBar position="static" sx={{background: "#000"}}>
                 <Toolbar>
                     <IconButton
