@@ -13,45 +13,50 @@ import { ManageViewContents } from './ManageViewContents';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 export const ManageViewController = () => {
-    const [navigationValue, setNavigationValue] = useState<number>(0);
+  const [navigationValue, setNavigationValue] = useState<number>(0);
 
-    const manageTheme = createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#fa7414'
-            }
+  const manageTheme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#fa7414',
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: '10px',
+          },
         },
-        components: {
-            MuiButton: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: "10px"
-                        
-                    }
-                }
-            }
-        }
-    })
+      },
+    },
+  });
 
-    return (
-        <div>
-            <Container maxWidth="md" style={{height:"70vh"}}>
-                <ThemeProvider theme={manageTheme}>
-                <ManageViewContents contentsNo={navigationValue} />
-                <BottomNavigation
-                    showLabels
-                    value={navigationValue}
-                    onChange={(event, newValue) => {
-                        setNavigationValue(newValue);
-                    }}
-                >
-                    <BottomNavigationAction label="請求入力" icon={<EditIcon />} />
-                    <BottomNavigationAction label="請求一覧・処理" icon={<FormatListBulletedIcon />} />
-                    <BottomNavigationAction label="請求日設定" icon={<SettingsIcon />} />
-                </BottomNavigation>
-                </ThemeProvider>
-            </Container>
-        </div>
-    );
-}
+  return (
+    <div>
+      <Container maxWidth="md" style={{ height: '70vh' }}>
+        <ThemeProvider theme={manageTheme}>
+          <ManageViewContents contentsNo={navigationValue} />
+          <BottomNavigation
+            showLabels
+            value={navigationValue}
+            onChange={(event, newValue) => {
+              setNavigationValue(newValue);
+            }}
+          >
+            <BottomNavigationAction label="請求入力" icon={<EditIcon />} />
+            <BottomNavigationAction
+              label="請求一覧・処理"
+              icon={<FormatListBulletedIcon />}
+            />
+            <BottomNavigationAction
+              label="請求日設定"
+              icon={<SettingsIcon />}
+            />
+          </BottomNavigation>
+        </ThemeProvider>
+      </Container>
+    </div>
+  );
+};
