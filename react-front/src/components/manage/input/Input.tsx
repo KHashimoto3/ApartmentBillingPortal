@@ -152,7 +152,7 @@ export const Input = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {listData.map((data, idx) => (
+              {listData.map((data) => (
                 <TableRow
                   key={data.no}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
