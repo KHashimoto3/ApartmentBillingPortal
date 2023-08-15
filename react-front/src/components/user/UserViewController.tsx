@@ -13,44 +13,50 @@ import { UserViewContents } from './UserViewContents';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 export const UserViewController = () => {
-    const [navigationValue, setNavigationValue] = useState<number>(0);
+  const [navigationValue, setNavigationValue] = useState<number>(0);
 
-    const userNavTheme = createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#26c988'
-            }
+  const userNavTheme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#26c988',
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: '10px',
+          },
         },
-        components: {
-            MuiButton: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: "10px"
-                    }
-                }
-            }
-        }
-    })
+      },
+    },
+  });
 
-    return (
-        <div>
-            <Container maxWidth="md" style={{height:"70vh"}}>
-                <ThemeProvider theme={userNavTheme}>
-                <UserViewContents contentsNo={navigationValue} />
-                <BottomNavigation
-                    showLabels
-                    value={navigationValue}
-                    onChange={(event, newValue) => {
-                        setNavigationValue(newValue);
-                    }}
-                >
-                    <BottomNavigationAction label="請求入力" icon={<HomeIcon />} />
-                    <BottomNavigationAction label="請求一覧" icon={<CurrencyYenIcon />} />
-                    <BottomNavigationAction label="請求日設定" icon={<FormatListBulletedIcon />} />
-                </BottomNavigation>
-                </ThemeProvider>
-            </Container>
-        </div>
-    );
-}
+  return (
+    <div>
+      <Container maxWidth="md" style={{ height: '70vh' }}>
+        <ThemeProvider theme={userNavTheme}>
+          <UserViewContents contentsNo={navigationValue} />
+          <BottomNavigation
+            showLabels
+            value={navigationValue}
+            onChange={(event, newValue) => {
+              setNavigationValue(newValue);
+            }}
+          >
+            <BottomNavigationAction label="請求入力" icon={<HomeIcon />} />
+            <BottomNavigationAction
+              label="請求一覧"
+              icon={<CurrencyYenIcon />}
+            />
+            <BottomNavigationAction
+              label="請求日設定"
+              icon={<FormatListBulletedIcon />}
+            />
+          </BottomNavigation>
+        </ThemeProvider>
+      </Container>
+    </div>
+  );
+};

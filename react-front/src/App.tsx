@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 
-import {User} from './components/user/User';
-import {Manage} from './components/manage/Manage';
+import { User } from './components/user/User';
+import { Manage } from './components/manage/Manage';
 
 function App() {
-   return (
+  return (
     <div className="App">
       <Routes>
         <Route path="/" element={<User />} />
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
