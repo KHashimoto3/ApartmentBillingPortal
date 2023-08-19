@@ -130,8 +130,10 @@ export const NextBilling = () => {
           return <OverView billingData={billingData} />;
         } else if (tabValue === '1') {
           return <CarryOver billingData={billingData} />;
-        } else {
+        } else if (tabValue === '2') {
           return <h1>３個目</h1>;
+        } else {
+          return <h1>対応していないタブ値です。</h1>;
         }
       })()}
     </Container>
