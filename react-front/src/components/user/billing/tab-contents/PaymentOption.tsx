@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-import { BillingData } from '../../types/BillingData';
+import { BillingData } from '../../../types/BillingData';
 
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 

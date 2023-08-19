@@ -2,16 +2,11 @@ import { useEffect, useState } from 'react';
 
 import Paper from '@mui/material/Paper';
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-
-import { PaymentOption } from './PaymentOption';
 import { Container, Stack, Tab, Tabs, Typography } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
 import { OverView } from './tab-contents/OverView';
+import { CarryOver } from './tab-contents/CarryOver';
 
 export const NextBilling = () => {
   const [billingData, setBillingData] = useState<BillingData>({
@@ -26,7 +21,6 @@ export const NextBilling = () => {
     paidPrice: 0,
     paid: 0,
   });
-  const [value, setValue] = useState<string>('no');
 
   const [tabValue, setTabValue] = useState<string>('0');
 
@@ -135,49 +129,7 @@ export const NextBilling = () => {
         if (tabValue === '0') {
           return <OverView billingData={billingData} />;
         } else if (tabValue === '1') {
-          return (
-            <Container
-              sx={{
-                width: '90%',
-                textAlign: 'center',
-                marginTop: '20px',
-                marginBottom: '50px',
-              }}
-            >
-              <Typography variant="h5">繰越のタイプを選択</Typography>
-              <FormControl>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  value={value}
-                  name="radio-buttons-group"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValue(e.target.value)
-                  }
-                >
-                  <FormControlLabel
-                    value="no"
-                    control={<Radio />}
-                    label="繰越なし"
-                  />
-                  <FormControlLabel
-                    value="part"
-                    control={<Radio />}
-                    label="一部繰越"
-                  />
-                  <FormControlLabel
-                    value="all"
-                    control={<Radio />}
-                    label="全額繰越"
-                  />
-                </RadioGroup>
-                <PaymentOption
-                  billingData={billingData}
-                  carryOverType={value}
-                />
-              </FormControl>
-            </Container>
-          );
+          return <CarryOver billingData={billingData} />;
         } else {
           return <h1>３個目</h1>;
         }
