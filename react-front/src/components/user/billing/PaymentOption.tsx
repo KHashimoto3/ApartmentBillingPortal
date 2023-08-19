@@ -1,5 +1,4 @@
 import {
-  Button,
   Container,
   Dialog,
   DialogActions,
@@ -7,9 +6,11 @@ import {
   DialogContentText,
   DialogTitle,
   Stack,
-  TextField,
   Typography,
 } from '@mui/material';
+
+import { Button, Input } from '@mui/joy';
+
 import { useEffect, useState } from 'react';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -138,7 +139,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
@@ -157,8 +158,6 @@ export const PaymentOption = (props: Props) => {
         </Typography>
         <Stack spacing={2}>
           <Button
-            size="small"
-            variant="contained"
             onClick={() => updateBillingData('no', 0)}
             disabled={saveDisabled}
           >
@@ -212,11 +211,9 @@ export const PaymentOption = (props: Props) => {
         </Typography>
         <Stack spacing={1}>
           <Typography variant="h6">今月支払う金額を入力</Typography>
-          <TextField
-            id="user-id"
+          <Input
             onChange={(event) => setPaymentPrice(Number(event.target.value))}
             value={paymentPrice}
-            variant="outlined"
           />
           <Typography variant="h3">
             <ArrowDownwardIcon fontSize="large" />
@@ -243,8 +240,6 @@ export const PaymentOption = (props: Props) => {
             }
           })()}
           <Button
-            size="small"
-            variant="contained"
             onClick={() => updateBillingData('part', carryOverPrice)}
             disabled={saveDisabled}
           >
@@ -298,8 +293,6 @@ export const PaymentOption = (props: Props) => {
         </Typography>
         <Stack spacing={2}>
           <Button
-            size="small"
-            variant="contained"
             onClick={() =>
               updateBillingData(
                 'all',
