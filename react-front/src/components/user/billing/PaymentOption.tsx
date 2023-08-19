@@ -84,6 +84,8 @@ export const PaymentOption = (props: Props) => {
     }
   };
 
+  //TODO: 最初の段階でも以下の条件を確認する
+
   useEffect(() => {
     setCarryOverPrice(
       billingData.price + billingData.beforeCarryOver - paymentPrice,
