@@ -26,6 +26,9 @@ export const OverView = (props: Props) => {
   const [yearValue, setYearValue] = useState<number | string>('');
   const [manthValue, setManthValue] = useState<number | string>('');
 
+  const yearList: number[] = [2022, 2023];
+  const manthList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   return (
     <Container sx={{ width: '80%', marginBottom: '50px' }}>
       <Grid container spacing={1}>
@@ -103,8 +106,9 @@ export const OverView = (props: Props) => {
               <MenuItem value="">
                 <em>年を選択</em>
               </MenuItem>
-              <MenuItem value={2022}>2022年</MenuItem>
-              <MenuItem value={2023}>2023年</MenuItem>
+              {yearList.map((year) => (
+                <MenuItem value={year}>{year}年</MenuItem>
+              ))}
             </Select>
           </Grid>
           <Grid item xs={3} sx={{ textAlign: 'center' }}>
@@ -118,18 +122,9 @@ export const OverView = (props: Props) => {
               <MenuItem value="">
                 <em>月を選択</em>
               </MenuItem>
-              <MenuItem value={1}>1月</MenuItem>
-              <MenuItem value={2}>2月</MenuItem>
-              <MenuItem value={3}>3月</MenuItem>
-              <MenuItem value={4}>4月</MenuItem>
-              <MenuItem value={5}>5月</MenuItem>
-              <MenuItem value={6}>6月</MenuItem>
-              <MenuItem value={7}>7月</MenuItem>
-              <MenuItem value={8}>8月</MenuItem>
-              <MenuItem value={9}>9月</MenuItem>
-              <MenuItem value={10}>10月</MenuItem>
-              <MenuItem value={11}>11月</MenuItem>
-              <MenuItem value={12}>12月</MenuItem>
+              {manthList.map((manth) => (
+                <MenuItem value={manth}>{manth}月</MenuItem>
+              ))}
             </Select>
           </Grid>
           <Grid item xs={5} sx={{ textAlign: 'center' }}>
