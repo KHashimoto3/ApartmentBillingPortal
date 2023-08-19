@@ -17,9 +17,7 @@ import {
   Stack,
   Tab,
   Tabs,
-  ThemeProvider,
   Typography,
-  createTheme,
 } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
@@ -103,34 +101,23 @@ export const NextBilling = () => {
         setBillingData(billingDataSrc);
     }, []);*/
 
-  const userTabTheme = createTheme({
-    palette: {
-      mode: 'light',
-      primary: {
-        main: '#26c988',
-      },
-    },
-  });
-
   return (
     <Container sx={{ height: '100%', overflowY: 'scroll' }}>
-      <ThemeProvider theme={userTabTheme}>
-        <Container sx={{ width: '80%' }}>
-          <Tabs
-            value={tabValue}
-            onChange={(event: React.BaseSyntheticEvent, newValue: string) =>
-              setTabValue(newValue)
-            }
-            textColor="primary"
-            indicatorColor="primary"
-            aria-label="secondary tabs example"
-          >
-            <Tab value="0" label="確認" />
-            <Tab value="1" label="繰越" />
-            <Tab value="2" label="チャット" />
-          </Tabs>
-        </Container>
-      </ThemeProvider>
+      <Container sx={{ width: '80%' }}>
+        <Tabs
+          value={tabValue}
+          onChange={(event: React.BaseSyntheticEvent, newValue: string) =>
+            setTabValue(newValue)
+          }
+          textColor="primary"
+          indicatorColor="primary"
+          aria-label="secondary tabs example"
+        >
+          <Tab value="0" label="確認" />
+          <Tab value="1" label="繰越" />
+          <Tab value="2" label="チャット" />
+        </Tabs>
+      </Container>
 
       <Paper
         elevation={3}
