@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import Container from '@mui/material/Container';
-
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import {
+  Container,
+  BottomNavigation,
+  BottomNavigationAction,
+} from '@mui/material';
 
 import HomeIcon from '@mui/icons-material/Home';
 import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
