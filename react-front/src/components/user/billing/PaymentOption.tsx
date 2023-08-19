@@ -192,7 +192,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
@@ -274,7 +274,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
