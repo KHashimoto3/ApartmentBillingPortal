@@ -5,8 +5,10 @@ import Paper from '@mui/material/Paper';
 import { Container, Stack, Tab, Tabs, Typography } from '@mui/material';
 
 import { BillingData } from '../../types/BillingData';
+
 import { OverView } from './tab-contents/OverView';
 import { CarryOver } from './tab-contents/CarryOver';
+import { Chat } from './tab-contents/Chat';
 
 export const NextBilling = () => {
   const [billingData, setBillingData] = useState<BillingData>({
@@ -131,7 +133,7 @@ export const NextBilling = () => {
         } else if (tabValue === '1') {
           return <CarryOver billingData={billingData} />;
         } else if (tabValue === '2') {
-          return <h1>３個目</h1>;
+          return <Chat />;
         } else {
           return <h1>対応していないタブ値です。</h1>;
         }
