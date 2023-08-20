@@ -1,16 +1,9 @@
-import {
-  Container,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { useState } from 'react';
 
 import { BillingData } from '../../../types/BillingData';
 import { PaymentOption } from './PaymentOption';
-import { Button } from '@mui/joy';
+import { Button, Radio, RadioGroup, Sheet } from '@mui/joy';
 
 type Props = {
   billingData: BillingData;
@@ -33,29 +26,54 @@ export const CarryOver = (props: Props) => {
         }}
       >
         <Typography variant="h5">繰越のタイプを選択</Typography>
-        <FormControl>
+
+        <Container sx={{ maxWidth: '80%', margin: '20px auto 20px auto' }}>
           <RadioGroup
-            row
-            aria-labelledby="demo-radio-buttons-group-label"
-            value={value}
-            name="radio-buttons-group"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setValue(e.target.value)
-            }
+            aria-labelledby="storage-label"
+            defaultValue="512GB"
+            size="lg"
+            sx={{ gap: 1.5 }}
           >
-            <FormControlLabel value="no" control={<Radio />} label="繰越なし" />
-            <FormControlLabel
-              value="part"
-              control={<Radio />}
-              label="一部繰越"
-            />
-            <FormControlLabel
-              value="all"
-              control={<Radio />}
-              label="全額繰越"
-            />
+            {['512GB', '1TB', '2TB'].map((value) => (
+              <Sheet
+                key={value}
+                sx={{
+                  p: 2,
+                  borderRadius: 'md',
+                  boxShadow: 'sm',
+                }}
+              >
+                <Radio
+                  label={`${value} SSD storage`}
+                  overlay
+                  disableIcon
+                  value={value}
+                  slotProps={{
+                    label: ({ checked }) => ({
+                      sx: {
+                        fontWeight: 'lg',
+                        fontSize: 'md',
+                        color: checked ? 'text.primary' : 'text.secondary',
+                      },
+                    }),
+                    action: ({ checked }) => ({
+                      sx: (theme) => ({
+                        ...(checked && {
+                          '--variant-borderWidth': '2px',
+                          '&&': {
+                            // && to increase the specificity to win the base :hover styles
+                            borderColor: theme.vars.palette.primary[500],
+                          },
+                        }),
+                      }),
+                    }),
+                  }}
+                />
+              </Sheet>
+            ))}
           </RadioGroup>
-        </FormControl>
+        </Container>
+
         <Button onClick={() => setSelectPageIsShow(false)}>次へ</Button>
       </Container>
     );
