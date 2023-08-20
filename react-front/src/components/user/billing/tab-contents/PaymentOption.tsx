@@ -1,5 +1,4 @@
 import {
-  Button,
   Container,
   Dialog,
   DialogActions,
@@ -7,25 +6,29 @@ import {
   DialogContentText,
   DialogTitle,
   Stack,
-  TextField,
   Typography,
 } from '@mui/material';
+
+import { Button, Input } from '@mui/joy';
+
 import { useEffect, useState } from 'react';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-import { BillingData } from '../../types/BillingData';
+import { BillingData } from '../../../types/BillingData';
 
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 type Props = {
   billingData: BillingData;
   carryOverType: string;
+  setSelectPageIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const PaymentOption = (props: Props) => {
   const billingData: BillingData = props.billingData;
   const carryOverType: string = props.carryOverType;
+  const setSelectPageIsShow = props.setSelectPageIsShow;
 
   //一部繰越で、今月支払う金額
   const [paymentPrice, setPaymentPrice] = useState<number>(
@@ -45,6 +48,11 @@ export const PaymentOption = (props: Props) => {
 
   const dialogClose = () => {
     setDialogOpen(false);
+    backPage();
+  };
+
+  const backPage = () => {
+    setSelectPageIsShow(true);
   };
 
   //請求データを更新する関数
@@ -82,6 +90,8 @@ export const PaymentOption = (props: Props) => {
       alert('エラー：設定に失敗しました。');
     }
   };
+
+  //TODO: 最初の段階でも以下の条件を確認する
 
   useEffect(() => {
     setCarryOverPrice(
@@ -138,7 +148,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
@@ -148,21 +158,21 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           繰越設定は行わず、全額を支払います。
         </Typography>
         <Stack spacing={2}>
           <Button
-            size="small"
-            variant="contained"
             onClick={() => updateBillingData('no', 0)}
             disabled={saveDisabled}
           >
             設定を保存
+          </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
           </Button>
         </Stack>
       </div>
@@ -193,7 +203,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
@@ -203,20 +213,17 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           一部を繰越し、今月の支払額を設定します。
         </Typography>
         <Stack spacing={1}>
           <Typography variant="h6">今月支払う金額を入力</Typography>
-          <TextField
-            id="user-id"
+          <Input
             onChange={(event) => setPaymentPrice(Number(event.target.value))}
             value={paymentPrice}
-            variant="outlined"
           />
           <Typography variant="h3">
             <ArrowDownwardIcon fontSize="large" />
@@ -243,12 +250,13 @@ export const PaymentOption = (props: Props) => {
             }
           })()}
           <Button
-            size="small"
-            variant="contained"
             onClick={() => updateBillingData('part', carryOverPrice)}
             disabled={saveDisabled}
           >
             設定を保存
+          </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
           </Button>
         </Stack>
       </div>
@@ -279,7 +287,7 @@ export const PaymentOption = (props: Props) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={dialogClose} autoFocus variant="contained">
+            <Button onClick={dialogClose} autoFocus>
               閉じる
             </Button>
           </DialogActions>
@@ -289,17 +297,14 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           全額を繰越し、今月は支払いを行いません。
         </Typography>
         <Stack spacing={2}>
           <Button
-            size="small"
-            variant="contained"
             onClick={() =>
               updateBillingData(
                 'all',
@@ -309,6 +314,9 @@ export const PaymentOption = (props: Props) => {
             disabled={saveDisabled}
           >
             設定を保存
+          </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
           </Button>
         </Stack>
       </div>
