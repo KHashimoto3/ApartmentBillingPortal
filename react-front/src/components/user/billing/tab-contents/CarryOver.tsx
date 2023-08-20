@@ -21,7 +21,7 @@ export const CarryOver = (props: Props) => {
   const [selectPageIsShow, setSelectPageIsShow] = useState<boolean>(true);
 
   const optionList: OptionList[] = [
-    { optionValue: 'no', optionLabel: '設定なし' },
+    { optionValue: 'no', optionLabel: '繰越しない' },
     { optionValue: 'part', optionLabel: '一部繰越' },
     { optionValue: 'all', optionLabel: '全額繰越' },
   ];

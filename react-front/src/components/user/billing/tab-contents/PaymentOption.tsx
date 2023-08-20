@@ -158,9 +158,8 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           繰越設定は行わず、全額を支払います。
@@ -214,9 +213,8 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           一部を繰越し、今月の支払額を設定します。
@@ -299,9 +297,8 @@ export const PaymentOption = (props: Props) => {
           sx={{
             marginBottom: '20px',
             color: '#000',
-            background: '#ededed',
             fontWeight: 'bold',
-            textAlign: 'left',
+            textAlign: 'center',
           }}
         >
           全額を繰越し、今月は支払いを行いません。
