@@ -3,17 +3,28 @@ import { useState } from 'react';
 
 import { BillingData } from '../../../types/BillingData';
 import { PaymentOption } from './PaymentOption';
-import { Button, Radio, RadioGroup, Sheet } from '@mui/joy';
+import { Button, Radio, RadioGroup, Sheet, Stack } from '@mui/joy';
 
 type Props = {
   billingData: BillingData;
 };
+
+interface OptionList {
+  optionValue: string;
+  optionLabel: string;
+}
 
 export const CarryOver = (props: Props) => {
   const billingData = props.billingData;
   const [value, setValue] = useState<string>('no');
 
   const [selectPageIsShow, setSelectPageIsShow] = useState<boolean>(true);
+
+  const optionList: OptionList[] = [
+    { optionValue: 'no', optionLabel: '設定なし' },
+    { optionValue: 'part', optionLabel: '一部繰越' },
+    { optionValue: 'all', optionLabel: '全額繰越' },
+  ];
 
   if (selectPageIsShow) {
     return (
@@ -26,7 +37,6 @@ export const CarryOver = (props: Props) => {
         }}
       >
         <Typography variant="h5">繰越のタイプを選択</Typography>
-
         <Container sx={{ maxWidth: '80%', margin: '20px auto 20px auto' }}>
           <RadioGroup
             aria-labelledby="storage-label"
@@ -34,9 +44,9 @@ export const CarryOver = (props: Props) => {
             size="lg"
             sx={{ gap: 1.5 }}
           >
-            {['512GB', '1TB', '2TB'].map((value) => (
+            {optionList.map((value) => (
               <Sheet
-                key={value}
+                key={value.optionValue}
                 sx={{
                   p: 2,
                   borderRadius: 'md',
@@ -44,10 +54,13 @@ export const CarryOver = (props: Props) => {
                 }}
               >
                 <Radio
-                  label={`${value} SSD storage`}
+                  label={value.optionLabel}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setValue(e.target.value)
+                  }
                   overlay
                   disableIcon
-                  value={value}
+                  value={value.optionValue}
                   slotProps={{
                     label: ({ checked }) => ({
                       sx: {
@@ -74,7 +87,9 @@ export const CarryOver = (props: Props) => {
           </RadioGroup>
         </Container>
 
-        <Button onClick={() => setSelectPageIsShow(false)}>次へ</Button>
+        <Stack spacing={1}>
+          <Button onClick={() => setSelectPageIsShow(false)}>次へ</Button>
+        </Stack>
       </Container>
     );
   } else {
