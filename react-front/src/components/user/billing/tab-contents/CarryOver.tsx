@@ -16,7 +16,7 @@ interface OptionList {
 
 export const CarryOver = (props: Props) => {
   const billingData = props.billingData;
-  const [value, setValue] = useState<string>('no');
+  const [value, setValue] = useState<string>(billingData.carryOverType);
 
   const [selectPageIsShow, setSelectPageIsShow] = useState<boolean>(true);
 
@@ -40,13 +40,13 @@ export const CarryOver = (props: Props) => {
         <Container sx={{ maxWidth: '80%', margin: '20px auto 20px auto' }}>
           <RadioGroup
             aria-labelledby="storage-label"
-            defaultValue="512GB"
+            defaultValue={billingData.carryOverType}
             size="lg"
             sx={{ gap: 1.5 }}
           >
             {optionList.map((value) => (
               <Sheet
-                key={value.optionValue}
+                key={billingData.carryOverType}
                 sx={{
                   p: 2,
                   borderRadius: 'md',
