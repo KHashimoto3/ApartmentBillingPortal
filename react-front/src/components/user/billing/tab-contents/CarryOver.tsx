@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 import { BillingData } from '../../../types/BillingData';
 import { PaymentOption } from './PaymentOption';
+import { Button } from '@mui/joy';
 
 type Props = {
   billingData: BillingData;
@@ -55,6 +56,7 @@ export const CarryOver = (props: Props) => {
             />
           </RadioGroup>
         </FormControl>
+        <Button onClick={() => setSelectPageIsShow(false)}>次へ</Button>
       </Container>
     );
   } else {
@@ -67,7 +69,11 @@ export const CarryOver = (props: Props) => {
           marginBottom: '50px',
         }}
       >
-        <PaymentOption billingData={billingData} carryOverType={value} />
+        <PaymentOption
+          billingData={billingData}
+          carryOverType={value}
+          setSelectPageIsShow={setSelectPageIsShow}
+        />
       </Container>
     );
   }

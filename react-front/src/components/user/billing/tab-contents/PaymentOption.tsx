@@ -22,11 +22,13 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 type Props = {
   billingData: BillingData;
   carryOverType: string;
+  setSelectPageIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const PaymentOption = (props: Props) => {
   const billingData: BillingData = props.billingData;
   const carryOverType: string = props.carryOverType;
+  const setSelectPageIsShow = props.setSelectPageIsShow;
 
   //一部繰越で、今月支払う金額
   const [paymentPrice, setPaymentPrice] = useState<number>(
@@ -46,6 +48,11 @@ export const PaymentOption = (props: Props) => {
 
   const dialogClose = () => {
     setDialogOpen(false);
+    backPage();
+  };
+
+  const backPage = () => {
+    setSelectPageIsShow(true);
   };
 
   //請求データを更新する関数
@@ -165,6 +172,9 @@ export const PaymentOption = (props: Props) => {
           >
             設定を保存
           </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
+          </Button>
         </Stack>
       </div>
     );
@@ -247,6 +257,9 @@ export const PaymentOption = (props: Props) => {
           >
             設定を保存
           </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
+          </Button>
         </Stack>
       </div>
     );
@@ -304,6 +317,9 @@ export const PaymentOption = (props: Props) => {
             disabled={saveDisabled}
           >
             設定を保存
+          </Button>
+          <Button variant="outlined" onClick={() => backPage()}>
+            選択に戻る
           </Button>
         </Stack>
       </div>
