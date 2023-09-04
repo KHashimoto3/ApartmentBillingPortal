@@ -37,7 +37,7 @@ func hello(c *gin.Context) {
 func getBillingList(c *gin.Context) {
 	rows, err := db.Query("SELECT * FROM billing;")
 	if err != nil {
-		c.JSON(500, gin.H{"error": err.Error()})
+		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
 		return
 	}
 	var bills []billing
