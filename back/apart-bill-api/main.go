@@ -86,7 +86,7 @@ func updateBillingRecord(c *gin.Context) {
 		return
 	}
 	//データベースを更新
-	_, err := db.Exec("UPDATE billing SET carry_over_type = ?, carry_over_price = ? WHERE user_id = ?", bill.CarryOverType, bill.CarryOverPrice, bill.UserId)
+	_, err := db.Exec("UPDATE billing SET carry_over_type = ?, carry_over_price = ? WHERE billing_id = ?", bill.CarryOverType, bill.CarryOverPrice, bill.BillingId)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 	}
@@ -135,7 +135,7 @@ func main() {
 	router.GET("/", hello)
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/billing", getBillingRecord)
-	router.POST("/update-bill-rec", updateBillingRecord)
+	router.POST("/billing/update", updateBillingRecord)
 
 	router.Run(":8080")
 }
