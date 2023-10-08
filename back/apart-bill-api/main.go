@@ -55,8 +55,15 @@ func getBillingList(c *gin.Context) {
 // 渡されたパラメータのuserIdに該当する請求データを1件取得する
 func getBillingRecord(c *gin.Context) {
 	userId := c.Query("userId")
+	dateId := c.Query("dateId")
+
+	if userId == "" || dateId == "" {
+		c.JSON(400, gin.H{"error": "パラメータが足りません。"})
+		return
+	}
+
 	var bill billing
-	err := db.QueryRow("SELECT * FROM billing WHERE user_id = ?", userId).
+	err := db.QueryRow("SELECT * FROM billing WHERE user_id = ? and date_id = ?", userId, dateId).
 		Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.DateId, &bill.PaidPrice, &bill.Paid)
 	if errors.Is(err, sql.ErrNoRows) {
 		//レコードがなかったときのエラー
@@ -127,7 +134,7 @@ func main() {
 
 	router.GET("/", hello)
 	router.GET("/get-bill-list", getBillingList)
-	router.GET("/get-bill-rec", getBillingRecord)
+	router.GET("/billing", getBillingRecord)
 	router.POST("/update-bill-rec", updateBillingRecord)
 
 	router.Run(":8080")
