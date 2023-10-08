@@ -57,6 +57,11 @@ func getBillingRecord(c *gin.Context) {
 	userId := c.Query("userId")
 	dateId := c.Query("dateId")
 
+	if userId == "" || dateId == "" {
+		c.JSON(400, gin.H{"error": "パラメータが足りません。"})
+		return
+	}
+
 	var bill billing
 	err := db.QueryRow("SELECT * FROM billing WHERE user_id = ? and date_id = ?", userId, dateId).
 		Scan(&bill.BillingId, &bill.UserId, &bill.UseAmount, &bill.Price, &bill.BeforeCarryOver, &bill.CarryOverType, &bill.CarryOverPrice, &bill.DateId, &bill.PaidPrice, &bill.Paid)
