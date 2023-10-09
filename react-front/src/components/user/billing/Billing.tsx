@@ -43,8 +43,9 @@ export const NextBilling = () => {
   };
 
   //表示中の人の請求データを取得して表示する
-  const getBillingData = async (userId: string) => {
-    const url = 'http://localhost:8080/get-bill-rec?userId=' + userId;
+  const getBillingData = async (userId: string, dateId: number) => {
+    const url =
+      'http://localhost:8080/billing?userId=' + userId + '&dateId=' + dateId;
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -71,7 +72,7 @@ export const NextBilling = () => {
 
   //APIから請求データを取得する
   useEffect(() => {
-    getBillingData('test1');
+    getBillingData('test1', 4120);
   }, []);
 
   //請求額を設定する
