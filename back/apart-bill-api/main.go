@@ -29,6 +29,13 @@ type billing struct {
 	Paid            int    `json:"paid"`
 }
 
+type payment_date struct {
+	DateId 			int    	`json:"dateId"`
+	billing_year 	int		`json:"billingYear"`
+	billing_month 	int 	`json:"billingMonth"`
+	payment_date 	int 	`json:"paymentDate"`
+}
+
 func hello(c *gin.Context) {
 	c.String(200, "hello!")
 }
@@ -87,6 +94,22 @@ func updateBillingRecord(c *gin.Context) {
 	}
 	//データベースを更新
 	_, err := db.Exec("UPDATE billing SET carry_over_type = ?, carry_over_price = ? WHERE billing_id = ?", bill.CarryOverType, bill.CarryOverPrice, bill.BillingId)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+	}
+	//正常に更新できた場合の処理
+	c.JSON(200, gin.H{"status": "Updated"})
+}
+
+func registPaymentDate(c *gin.Context) {
+	//受信した新しい支払い日データをpayment_dateに格納
+	var date payment_date
+	if err := c.BindJSON(&date); err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//データベースを更新
+	_, err := db.Exec("INSERT INTO payment_date (billing_year, billing_month, payment_date) VALUES (?, ?, ?)", date.billing_year, date.billing_month, date.payment_date)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 	}
