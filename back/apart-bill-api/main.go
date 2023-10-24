@@ -159,6 +159,7 @@ func main() {
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/billing", getBillingRecord)
 	router.POST("/billing/update", updateBillingRecord)
+	router.POST("/payment/add", registPaymentDate)
 
 	router.Run(":8080")
 }
