@@ -101,7 +101,7 @@ func updateBillingRecord(c *gin.Context) {
 	c.JSON(200, gin.H{"status": "Updated"})
 }
 
-func getDates(c *gin.Context) {
+func getPaymentDateId(c *gin.Context) {
 	year := c.Query("year")
 	month := c.Query("month")
 
@@ -169,6 +169,7 @@ func main() {
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/billing", getBillingRecord)
 	router.POST("/billing/update", updateBillingRecord)
+	router.GET("/payment/date", getPaymentDateId)
 
 	router.Run(":8080")
 }
