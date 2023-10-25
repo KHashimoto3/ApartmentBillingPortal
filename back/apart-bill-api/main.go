@@ -29,6 +29,13 @@ type billing struct {
 	Paid            int    `json:"paid"`
 }
 
+type payment_date struct {
+	dateId int `json:"dateId"`
+	billingYear int `json:"billingYear"`
+	billingMonth int `json:"billingMonth"`
+	paymentDate int `json:"paymentDate"`
+}
+
 func hello(c *gin.Context) {
 	c.String(200, "hello!")
 }
@@ -92,6 +99,32 @@ func updateBillingRecord(c *gin.Context) {
 	}
 	//正常に更新できた場合の処理
 	c.JSON(200, gin.H{"status": "Updated"})
+}
+
+func getDates(c *gin.Context) {
+	year := c.Query("year")
+	month := c.Query("month")
+
+	if year == "" || month == "" {
+		c.JSON(400, gin.H{"error": "パラメータが足りません。"})
+		return
+	}
+
+	var date payment_date
+	err := db.QueryRow("SELECT * FROM payment_date WHERE billing_year = ? and billing_month = ?", year, month).
+		Scan(&date.dateId, &date.billingYear, &date.billingMonth, &date.paymentDate)
+	if errors.Is(err, sql.ErrNoRows) {
+		//レコードがなかったときのエラー
+		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
+		return
+	}
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//レコードが見つかった場合の処理
+	//dateIdを返す
+	c.JSON(200, gin.H{"dateId": date.dateId})
 }
 
 func main() {
