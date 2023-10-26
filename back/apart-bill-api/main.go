@@ -31,9 +31,9 @@ type billing struct {
 
 type payment_date struct {
 	DateId 			int    	`json:"dateId"`
-	billing_year 	int		`json:"billingYear"`
-	billing_month 	int 	`json:"billingMonth"`
-	payment_date 	int 	`json:"paymentDate"`
+	BillingYear 	int		`json:"billingYear"`
+	BillingMonth 	int 	`json:"billingMonth"`
+	PaymentDate 	int 	`json:"paymentDate"`
 }
 
 func hello(c *gin.Context) {
@@ -109,7 +109,7 @@ func registPaymentDate(c *gin.Context) {
 		return
 	}
 	//データベースを更新
-	_, err := db.Exec("INSERT INTO payment_date (billing_year, billing_month, payment_date) VALUES (?, ?, ?)", date.billing_year, date.billing_month, date.payment_date)
+	_, err := db.Exec("INSERT INTO payment_date (billing_year, billing_month, payment_date) VALUES (?, ?, ?)", date.BillingYear, date.BillingMonth, date.PaymentDate)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 	}
