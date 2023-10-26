@@ -11,7 +11,8 @@ create table user(
 create table payment_date(
     date_id int(10) auto_increment not null,
     billing_year int(10) not null,
-    billingMonth int(10) not null,
+    billing_month int(10) not null,
+    payment_date int(10),
     primary key (date_id)
 );
 
