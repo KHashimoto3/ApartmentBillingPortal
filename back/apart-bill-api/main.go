@@ -101,6 +101,32 @@ func updateBillingRecord(c *gin.Context) {
 	c.JSON(200, gin.H{"status": "Updated"})
 }
 
+func getPaymentDateId(c *gin.Context) {
+	year := c.Query("year")
+	month := c.Query("month")
+
+	if year == "" || month == "" {
+		c.JSON(400, gin.H{"error": "パラメータが足りません。"})
+		return
+	}
+
+	var date payment_date
+	err := db.QueryRow("SELECT * FROM payment_date WHERE billing_year = ? and billing_month = ?", year, month).
+		Scan(&date.DateId, &date.BillingYear, &date.BillingMonth, &date.PaymentDate)
+	if errors.Is(err, sql.ErrNoRows) {
+		//レコードがなかったときのエラー
+		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
+		return
+	}
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//レコードが見つかった場合の処理
+	//dateIdを返す
+	c.JSON(200, gin.H{"dateId": date.DateId})
+}
+
 func registPaymentDate(c *gin.Context) {
 	//受信した新しい支払い日データをpayment_dateに格納
 	var date payment_date
@@ -159,6 +185,7 @@ func main() {
 	router.GET("/get-bill-list", getBillingList)
 	router.GET("/billing", getBillingRecord)
 	router.POST("/billing/update", updateBillingRecord)
+	router.GET("/payment/date", getPaymentDateId)
 	router.POST("/payment/add", registPaymentDate)
 
 	router.Run(":8080")
