@@ -112,7 +112,7 @@ func getPaymentDateId(c *gin.Context) {
 
 	var date payment_date
 	err := db.QueryRow("SELECT * FROM payment_date WHERE billing_year = ? and billing_month = ?", year, month).
-		Scan(&date.dateId, &date.billingYear, &date.billingMonth, &date.paymentDate)
+		Scan(&date.DateId, &date.BillingYear, &date.BillingMonth, &date.PaymentDate)
 	if errors.Is(err, sql.ErrNoRows) {
 		//レコードがなかったときのエラー
 		c.JSON(404, gin.H{"error": "レコードが存在しません。"})
@@ -124,7 +124,7 @@ func getPaymentDateId(c *gin.Context) {
 	}
 	//レコードが見つかった場合の処理
 	//dateIdを返す
-	c.JSON(200, gin.H{"dateId": date.dateId})
+	c.JSON(200, gin.H{"dateId": date.DateId})
 }
 
 func registPaymentDate(c *gin.Context) {
