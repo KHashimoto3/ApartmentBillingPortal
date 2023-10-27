@@ -30,10 +30,10 @@ type billing struct {
 }
 
 type payment_date struct {
-	dateId int `json:"dateId"`
-	billingYear int `json:"billingYear"`
-	billingMonth int `json:"billingMonth"`
-	paymentDate int `json:"paymentDate"`
+	DateId 			int    	`json:"dateId"`
+	BillingYear 	int		`json:"billingYear"`
+	BillingMonth 	int 	`json:"billingMonth"`
+	PaymentDate 	int 	`json:"paymentDate"`
 }
 
 func hello(c *gin.Context) {
@@ -127,6 +127,22 @@ func getPaymentDateId(c *gin.Context) {
 	c.JSON(200, gin.H{"dateId": date.dateId})
 }
 
+func registPaymentDate(c *gin.Context) {
+	//受信した新しい支払い日データをpayment_dateに格納
+	var date payment_date
+	if err := c.BindJSON(&date); err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	//データベースを更新
+	_, err := db.Exec("INSERT INTO payment_date (billing_year, billing_month, payment_date) VALUES (?, ?, ?)", date.BillingYear, date.BillingMonth, date.PaymentDate)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+	}
+	//正常に更新できた場合の処理
+	c.JSON(200, gin.H{"status": "Updated"})
+}
+
 func main() {
 	router := gin.Default()
 
@@ -170,6 +186,7 @@ func main() {
 	router.GET("/billing", getBillingRecord)
 	router.POST("/billing/update", updateBillingRecord)
 	router.GET("/payment/date", getPaymentDateId)
+	router.POST("/payment/add", registPaymentDate)
 
 	router.Run(":8080")
 }
